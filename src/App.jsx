@@ -5,7 +5,7 @@ import Layout from "./components/Layout";
 import Public from "./pages/Public/Public";
 import Login from "./pages/auth/Login";
 import DashLayout from "./components/DashLayout";
-import Home from "./pages/dashboard/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Staff from "./pages/admin/staff/StaffList";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -22,7 +22,7 @@ const App = () => {
             <Route index element={<Public />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<DashLayout />}>
-              <Route index="dashboard" element={<Home />} />
+              <Route index="dashboard" element={<Dashboard />} />
               <Route path="stafflist" element={<Staff />} />
             </Route>
           </Route>
