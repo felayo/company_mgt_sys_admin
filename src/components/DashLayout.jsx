@@ -1,18 +1,31 @@
+import { useState } from "react";
+import { Box, useMediaQuery } from "@mui/material";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import Topbar from "./Topbar";
+import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 
 const DashLayout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
   return (
-    <div className="app">
-      <Sidebar />
-      <main className="content">
-        <Topbar />
+    <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
+      <Sidebar
+        isNonMobile={isNonMobile}
+        drawerWidth="250px"
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+      <Box flexGrow={1}>
+        <Navbar
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
         <Outlet />
         <Footer />
-      </main>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
