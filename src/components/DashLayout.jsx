@@ -6,12 +6,18 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 
+import { useGetUserQuery } from "../redux/app/api/api.js";
+
 const DashLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
+  const userId = useSelector((state) => state.theme.userId);
+  const { data } = useGetUserQuery(userId);
+
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
       <Sidebar
+        user={data || {}}
         isNonMobile={isNonMobile}
         drawerWidth="250px"
         isSidebarOpen={isSidebarOpen}
@@ -19,6 +25,7 @@ const DashLayout = () => {
       />
       <Box flexGrow={1}>
         <Navbar
+          user={data || {}}
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />

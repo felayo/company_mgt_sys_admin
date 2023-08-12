@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import {
   AppBar,
@@ -13,7 +15,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import FlexBetween from "./FlexBetween";
-import { setMode } from "../features/theme/themeSplice";
+import { setMode } from "../redux/features/theme/themeSplice";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -24,10 +26,9 @@ import {
 } from "@mui/icons-material";
 import profileImage from "../assets/user.png";
 
-const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
+const Navbar = ({user, isSidebarOpen, setIsSidebarOpen}) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
@@ -98,13 +99,13 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
                   fontSize="0.85rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  Ayorinde
+                  {user.data?.email}
                 </Typography>
                 <Typography
                   fontSize="0.75rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
-                  Software Developer
+                  {user.data?.role}
                 </Typography>
               </Box>
               <ArrowDropDownOutlined

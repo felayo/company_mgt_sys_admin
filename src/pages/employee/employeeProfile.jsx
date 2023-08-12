@@ -1,8 +1,7 @@
 import { Box } from "@mui/material";
-import Header from "../../../components/Header";
+import Header from "../../components/Header";
 
-const Staff = () => {
-
+const EmployeeProfile = () => {
   return (
     <Box m="20px">
       <Header title="EMPLOYEE" subtitle="Managing the Employees" />
@@ -10,4 +9,4 @@ const Staff = () => {
   );
 };
 
-export default Staff;
+export default EmployeeProfile;

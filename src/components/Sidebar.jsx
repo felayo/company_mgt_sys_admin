@@ -40,29 +40,64 @@ const navItems = [
     link: ""
   },
   {
-    text: "Client Facing",
+    text: "Employee",
     icon: null,
     link: "#"
   },
   {
-    text: "Products",
+    text: "Users",
     icon: <ShoppingCartOutlined />,
-    link: "products"
+    link: "users"
   },
   {
-    text: "Employee",
+    text: "Staff Profile",
     icon: <Groups2Outlined />,
     link: "employee"
   },
   {
-    text: "Transactions",
+    text: "Leave Tracker",
     icon: <ReceiptLongOutlined />,
-    link: "transactions"
+    link: "leave"
   },
   {
-    text: "Geography",
+    text: "Queries",
     icon: <PublicOutlined />,
-    link: "geography"
+    link: "query"
+  },
+  {
+    text: "Birthday Tracker",
+    icon: <PublicOutlined />,
+    link: "birthday"
+  },
+  {
+    text: "Department",
+    icon: null,
+    link: "#"
+  },
+  {
+    text: "Department List",
+    icon: <PublicOutlined />,
+    link: "department"
+  },
+  {
+    text: "Records",
+    icon: <PublicOutlined />,
+    link: "record"
+  },
+  {
+    text: "Documents",
+    icon: <PublicOutlined />,
+    link: "documents"
+  },
+  {
+    text: "Fleets",
+    icon: null,
+    link: "#"
+  },
+  {
+    text: "Fleet Records",
+    icon: <PointOfSaleOutlined />,
+    link: "vehicle_records"
   },
   {
     text: "Sales",
@@ -135,9 +170,11 @@ const Sidebar = ({
               color: theme.palette.secondary[200],
               backgroundColor: theme.palette.background.alt,
               boxSixing: "border-box",
+              borderWidth: isNonMobile ? 0 : "2px",
               width: drawerWidth,
             },
-          }}>
+          }}
+        >
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 3rem">
               <FlexBetween color={theme.palette.secondary.main}>
@@ -203,7 +240,8 @@ const Sidebar = ({
               })}
             </List>
           </Box>
-          <Box position="relative" bottom="2rem">
+
+          <Box position="relative" bottom="0.5rem">
             <Divider />
             <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
               <Box
@@ -227,7 +265,7 @@ const Sidebar = ({
                   fontSize="0.8rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
-                  Software Developer
+                  Software developer
                 </Typography>
               </Box>
               <SettingsOutlined
