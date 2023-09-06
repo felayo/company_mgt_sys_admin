@@ -11,7 +11,7 @@ import { useGetUserQuery } from "../redux/app/api/api.js";
 const DashLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
-  const userId = useSelector((state) => state.theme.userId);
+  const userId = useSelector((state) => state.auth.userId);
   const { data } = useGetUserQuery(userId);
 
   return (

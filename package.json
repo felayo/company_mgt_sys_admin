@@ -25,13 +25,13 @@
     "@nivo/line": "^0.83.0",
     "@nivo/pie": "^0.83.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "formik": "^2.4.2",
+    "formik": "^2.4.3",
     "react": "^18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.1",
-    "yup": "^1.2.0"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

@@ -6,7 +6,7 @@ import { themeSettings } from "./theme";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Public from "./pages/Public/Public";
-import Login from "./pages/auth/Login";
+import Login from "./pages/auth/login/Login";
 import DashLayout from "./components/DashLayout";
 
 import Dashboard from "./pages/dashboard/Dashboard";
