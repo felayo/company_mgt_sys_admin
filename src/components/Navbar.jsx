@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import FlexBetween from "./FlexBetween";
-import { setMode } from "../redux/features/theme/themeSplice";
+import { setMode } from "../redux/features/theme/themeSlice";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -26,7 +26,7 @@ import {
 } from "@mui/icons-material";
 import profileImage from "../assets/user.png";
 
-const Navbar = ({user, isSidebarOpen, setIsSidebarOpen}) => {
+const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -51,8 +51,7 @@ const Navbar = ({user, isSidebarOpen, setIsSidebarOpen}) => {
             backgroundColor={theme.palette.background.alt}
             borderRadius="9px"
             gap="3rem"
-            p="0.1rem 1.5rem"
-          >
+            p="0.1rem 1.5rem">
             <InputBase placeholder="Search..." />
             <IconButton>
               <Search />
@@ -60,7 +59,7 @@ const Navbar = ({user, isSidebarOpen, setIsSidebarOpen}) => {
           </FlexBetween>
         </FlexBetween>
 
-         {/* RIGHT SIDE */}
+        {/* RIGHT SIDE */}
         <FlexBetween gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
@@ -82,8 +81,7 @@ const Navbar = ({user, isSidebarOpen, setIsSidebarOpen}) => {
                 alignItems: "center",
                 textTransform: "none",
                 gap: "1rem",
-              }}
-            >
+              }}>
               <Box
                 component="img"
                 alt="profile"
@@ -97,14 +95,12 @@ const Navbar = ({user, isSidebarOpen, setIsSidebarOpen}) => {
                 <Typography
                   fontWeight="bold"
                   fontSize="0.85rem"
-                  sx={{ color: theme.palette.secondary[100] }}
-                >
+                  sx={{ color: theme.palette.secondary[100] }}>
                   {user.data?.email}
                 </Typography>
                 <Typography
                   fontSize="0.75rem"
-                  sx={{ color: theme.palette.secondary[200] }}
-                >
+                  sx={{ color: theme.palette.secondary[200] }}>
                   {user.data?.role}
                 </Typography>
               </Box>
@@ -116,8 +112,7 @@ const Navbar = ({user, isSidebarOpen, setIsSidebarOpen}) => {
               anchorEl={anchorEl}
               open={isOpen}
               onClose={handleClose}
-              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            >
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
               <MenuItem onClick={handleClose}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>

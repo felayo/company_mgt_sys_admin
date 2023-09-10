@@ -1,45 +1,63 @@
-import { useEffect, useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { useEffect, useState, useRef } from "react";
+import { Box, Grid, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../../../redux/app/api/api";
-import { setCredentials } from "../../../redux/features/auth/authSlice"
+import { useDispatch } from "react-redux";
+import { useLoginMutation } from "../../../redux/features/auth/authApiSlice";
+import { setCredentials } from "../../../redux/features/auth/authSlice";
 import "./Login.css";
 //import { useFormik } from "formik";
 //import { LoginValidation } from "./Validator";
-
 import logo from "../../../assets/logo.png";
 
-const Login = () => {
+import usePersist from "../../../hooks/usePersist";
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Login = () => {
+  const userRef = useRef();
+  const errRef = useRef();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [persist, setPersist] = usePersist();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
 
-  const { userInfo } = useSelector((state) => state.auth);
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
 
   useEffect(() => {
-    if (userInfo) {
-      navigate("/dashboard");
-    }
-  }, [navigate, userInfo]);
+    setErrMsg("");
+  }, [email, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
+      const { token } = await login({ email, password }).unwrap();
+      dispatch(setCredentials({token}));
+      setEmail("");
+      setPassword("");
       navigate("/dashboard");
     } catch (err) {
-      console.log(err);
+      if (!err.status) {
+        setErrMsg("No Server Response");
+      } else if (err.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg(err.data?.message);
+      }
+      errRef.current.focus();
     }
   };
+  // handle persist login toggle
+  const handleToggle = () => setPersist((prev) => !prev);
+  const errClass = errMsg ? "errmsg" : "offscreen";
+  if (isLoading) return <p>Loading...</p>;
 
-  
   return (
     <Box>
       <Grid container spacing={0}>
@@ -53,7 +71,14 @@ const Login = () => {
               <Link to="/">
                 <img src={logo} className="login_logo" alt="logo" />
               </Link>
-              <form method="POST" className="login_form">
+              <Typography
+                ref={errRef}
+                className={errClass}
+                aria-live="assertive"></Typography>
+              <form
+                method="POST"
+                className="login_form"
+                onSubmit={handleSubmit}>
                 <div className="login_form_group">
                   <label htmlFor="email" className="login_label">
                     Email Address:{" "}
@@ -61,10 +86,13 @@ const Login = () => {
                   <input
                     type="email"
                     name="email"
+                    ref={userRef}
                     value={email}
                     className="login_input"
                     placeholder="Enter your email address"
                     onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="off"
+                    required
                   />
                 </div>
 
@@ -79,15 +107,24 @@ const Login = () => {
                     className="login_input"
                     placeholder="Enter your password"
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
 
-                <button
-                  className="login_button"
-                  onClick={handleSubmit}
-                  type="submit">
+                <button className="login_button" type="submit">
                   Login
                 </button>
+
+                <label htmlFor="persist" className="form__persist">
+                  <input
+                    type="checkbox"
+                    className="form__checkbox"
+                    id="persist"
+                    onChange={handleToggle}
+                    checked={persist}
+                  />
+                  Stay on this device
+                </label>
               </form>
             </Box>
           </Box>

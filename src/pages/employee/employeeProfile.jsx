@@ -2,11 +2,11 @@ import { Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import Header from "../../components/Header";
-import { useGetEmployeesQuery } from "../../redux/app/api/api";
+import { useGetAllEmployeesQuery } from "../../redux/features/admin/usersApiSlice";
 
 const EmployeeProfile = () => {
   const theme = useTheme();
-  const { data, isLoading } = useGetEmployeesQuery();
+  const { data, isLoading } = useGetAllEmployeesQuery();
   const employeeData = data?.data;
 
   const columns = [

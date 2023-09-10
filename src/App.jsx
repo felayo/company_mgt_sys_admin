@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Public from "./pages/Public/Public";
 import Login from "./pages/auth/login/Login";
+import PersistLogin from "./pages/auth/login/PersistLogin";
 import DashLayout from "./components/DashLayout";
 
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -22,13 +23,19 @@ const App = () => {
         <CssBaseline />
         <Routes>
           <Route path="/" element={<Layout />}>
+            {/* public routes */}
             <Route index element={<Public />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<DashLayout />}>
-              <Route index="dashboard" element={<Dashboard />} />
-              <Route path="employee" element={<EmployeeProfile />} />
-              <Route path="vehicle_records" element={<FleetRecords />} />
-            </Route>
+
+            {/* Protected Routes */}
+            <Route element={<PersistLogin />}>
+              {/* Admin Routes */}
+              <Route path="/dashboard" element={<DashLayout />}>
+                <Route index="dashboard" element={<Dashboard />} />
+                <Route path="employee" element={<EmployeeProfile />} />
+                <Route path="vehicle_records" element={<FleetRecords />} />
+              </Route>
+            </Route> {/* End Protected Routes */}
           </Route>
         </Routes>
       </ThemeProvider>

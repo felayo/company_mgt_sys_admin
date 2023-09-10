@@ -2,7 +2,7 @@ import { Box, Button, useTheme, useMediaQuery } from "@mui/material";
 import { DownloadOutlined } from "@mui/icons-material";
 
 import Header from "../../components/Header";
-import { useGetVehiclesQuery } from "../../redux/app/api/api";
+import { useGetVehiclesQuery } from "../../redux/features/admin/vehiclesApiSlice";
 import FleetRecordLists from "./FleetRecordLists";
 import FlexBetween from "../../components/FlexBetween";
 

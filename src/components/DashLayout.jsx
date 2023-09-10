@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 
-import { useGetUserQuery } from "../redux/app/api/api.js";
+import { useGetUserQuery } from "../redux/features/admin/usersApiSlice";
 
 const DashLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
