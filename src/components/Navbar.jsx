@@ -25,8 +25,9 @@ import {
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import profileImage from "../assets/user.png";
+import useAuth from "../hooks/useAuth";
 
-const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -34,6 +35,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
+  const { email, role } = useAuth();
+  
   return (
     <AppBar
       sx={{
@@ -96,12 +99,12 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                   fontWeight="bold"
                   fontSize="0.85rem"
                   sx={{ color: theme.palette.secondary[100] }}>
-                  {user.data?.email}
+                  { email }
                 </Typography>
                 <Typography
                   fontSize="0.75rem"
                   sx={{ color: theme.palette.secondary[200] }}>
-                  {user.data?.role}
+                  { role }
                 </Typography>
               </Box>
               <ArrowDropDownOutlined

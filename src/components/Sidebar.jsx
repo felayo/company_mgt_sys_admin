@@ -32,6 +32,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import profileImage from "../assets/user.png";
+import useAuth from "../hooks/useAuth";
 
 const navItems = [
   {
@@ -151,6 +152,7 @@ const Sidebar = ({
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const theme = useTheme();
+  const { email, role } = useAuth();
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -259,13 +261,13 @@ const Sidebar = ({
                   fontSize="0.9rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  Ayorinde
+                  { email }
                 </Typography>
                 <Typography
                   fontSize="0.8rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
-                  Software developer
+                  { role }
                 </Typography>
               </Box>
               <SettingsOutlined

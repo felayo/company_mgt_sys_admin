@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectCurrentToken } from "../redux/features/auth/authSlice"
+import { selectCurrentToken } from "../redux/features/auth/authSlice";
 import jwtDecode from 'jwt-decode'
 
 const useAuth = () => {
@@ -10,6 +10,7 @@ const useAuth = () => {
 
     if (token) {
         const decoded = jwtDecode(token)
+
         const { email, role } = decoded
 
         isManager = role.includes('manager')
