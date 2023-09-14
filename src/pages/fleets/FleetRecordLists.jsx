@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import {
   useTheme,
@@ -31,7 +32,8 @@ const FleetRecordLists = ({
         <Typography
           variant="h5"
           component="div"
-          color={theme.palette.secondary[300]}
+          fontWeight="bold"
+          color={theme.palette.primary.dark}
           gutterBottom>
           {make}
         </Typography>

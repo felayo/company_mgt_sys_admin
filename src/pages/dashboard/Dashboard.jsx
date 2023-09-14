@@ -1,72 +1,32 @@
-import {
-  Box,
-  Button,
-  Typography,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
-import {
-  DownloadOutlined,
-  Email,
-  PointOfSale,
-  PersonAdd,
-  Traffic,
-} from "@mui/icons-material";
-import { DataGrid } from "@mui/x-data-grid";
+import { Box, Button, useTheme, useMediaQuery } from "@mui/material";
+import { NaturePeople } from "@mui/icons-material";
 
 import Header from "../../components/Header";
 import FlexBetween from "../../components/FlexBetween";
 
+import { useGetEmployeeQuery } from "../../redux/features/employee/employeeApiSlice";
+
 const Dashboard = () => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
+  const { data } = useGetEmployeeQuery()
 
-  const columns = [
-    {
-      field: "_id",
-      headerName: "ID",
-      flex: 1,
-    },
-    {
-      field: "userId",
-      headerName: "User ID",
-      flex: 1,
-    },
-    {
-      field: "createdAt",
-      headerName: "CreatedAt",
-      flex: 1,
-    },
-    {
-      field: "products",
-      headerName: "# of Products",
-      flex: 0.5,
-      sortable: false,
-      renderCell: (params) => params.value.length,
-    },
-    {
-      field: "cost",
-      headerName: "Cost",
-      flex: 1,
-      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
-    },
-  ];
 
   return (
     <Box m="1.5rem 2.5rem">
       <FlexBetween>
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="DASHBOARD" subtitle={`Welcome ${data?.data.name}`} />
         <Box>
           <Button
             sx={{
-              backgroundColor: theme.palette.secondary.light,
+              backgroundColor: theme.palette.primary.dark,
               color: theme.palette.background.alt,
-              fontSize: "14px",
+              fontSize: "12px",
               fontWeight: "bold",
-              padding: "10px 20px",
+              padding: "5px 10px"
             }}>
-            <DownloadOutlined sx={{ mr: "10px" }} />
-            Download Reports
+            <NaturePeople sx={{ mr: "10px" }} />
+            Request for Leave
           </Button>
         </Box>
       </FlexBetween>
@@ -78,9 +38,7 @@ const Dashboard = () => {
         gap="20px"
         sx={{
           "& > div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
-        }}>
-        
-      </Box>
+        }}></Box>
     </Box>
   );
 };

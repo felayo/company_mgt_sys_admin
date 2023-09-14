@@ -2,7 +2,7 @@ import { Box, Button, useTheme, useMediaQuery } from "@mui/material";
 import { DownloadOutlined } from "@mui/icons-material";
 
 import Header from "../../components/Header";
-import { useGetVehiclesQuery } from "../../redux/features/admin/vehiclesApiSlice";
+import { useGetVehiclesQuery } from "../../redux/features/vehicle/vehiclesApiSlice";
 import FleetRecordLists from "./FleetRecordLists";
 import FlexBetween from "../../components/FlexBetween";
 
@@ -23,7 +23,7 @@ const FleetRecords = () => {
         <Box>
           <Button
             sx={{
-              backgroundColor: theme.palette.secondary.light,
+              backgroundColor: theme.palette.primary.dark,
               color: theme.palette.background.alt,
               fontSize: "14px",
               fontWeight: "bold",
