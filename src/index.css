@@ -9,21 +9,21 @@ body,
     font-family: "Inter", sans-serif;
 }
 
+
+/*  scrollbar style
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: #7a7f9d;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #21295c;
 }
 
-/* Handle on Hover */
 ::-webkit-scrollbar-track:hover {
     background: #21295c;
 }
+*/
