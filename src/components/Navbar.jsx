@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom'
 import {
   AppBar,
   Button,
@@ -13,9 +14,6 @@ import {
   MenuItem,
   useTheme,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
-import FlexBetween from "./FlexBetween";
-import { setMode } from "../redux/features/theme/themeSlice";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -24,19 +22,32 @@ import {
   SettingsOutlined,
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
+
+import { useDispatch } from "react-redux";
+import { setMode } from "../redux/features/theme/themeSlice";
+import { useSendLogoutMutation } from "../redux/features/auth/authApiSlice";
+
+import FlexBetween from "./FlexBetween";
 import profileImage from "../assets/user.png";
+
 import useAuth from "../hooks/useAuth";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
+  const [sendLogout, { isLoading, isSuccess, isError, error }] = useSendLogoutMutation()
+  const { email, role } = useAuth();
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
+
+  useEffect(() => {
+        if (isSuccess) navigate('/')
+    }, [isSuccess, navigate])
+
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  const { email, role } = useAuth();
-  
   return (
     <AppBar
       sx={{
@@ -98,17 +109,17 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 <Typography
                   fontWeight="bold"
                   fontSize="0.85rem"
-                  sx={{ color: theme.palette.secondary[100] }}>
-                  { email }
+                  sx={{ color: theme.palette.neutral.dark }}>
+                  {email}
                 </Typography>
                 <Typography
                   fontSize="0.75rem"
-                  sx={{ color: theme.palette.secondary[200] }}>
-                  { role }
+                  sx={{ color: theme.palette.neutral.main }}>
+                  {role}
                 </Typography>
               </Box>
               <ArrowDropDownOutlined
-                sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
+                sx={{ color: theme.palette.neutral.dark, fontSize: "25px" }}
               />
             </Button>
             <Menu
@@ -116,7 +127,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
               open={isOpen}
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={sendLogout}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>

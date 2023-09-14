@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import {
   Box,
@@ -22,125 +23,13 @@ import {
   ReceiptLongOutlined,
   PublicOutlined,
   PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
-  AdminPanelSettingsOutlined,
-  TrendingUpOutlined,
-  PieChartOutlined,
+  TodayOutlined
 } from "@mui/icons-material";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import profileImage from "../assets/user.png";
 import useAuth from "../hooks/useAuth";
-
-const navItems = [
-  {
-    text: "Dashboard",
-    icon: <HomeOutlined />,
-    link: ""
-  },
-  {
-    text: "Employee",
-    icon: null,
-    link: "#"
-  },
-  {
-    text: "Users",
-    icon: <ShoppingCartOutlined />,
-    link: "users"
-  },
-  {
-    text: "Staff Profile",
-    icon: <Groups2Outlined />,
-    link: "employee"
-  },
-  {
-    text: "Leave Tracker",
-    icon: <ReceiptLongOutlined />,
-    link: "leave"
-  },
-  {
-    text: "Queries",
-    icon: <PublicOutlined />,
-    link: "query"
-  },
-  {
-    text: "Birthday Tracker",
-    icon: <PublicOutlined />,
-    link: "birthday"
-  },
-  {
-    text: "Department",
-    icon: null,
-    link: "#"
-  },
-  {
-    text: "Department List",
-    icon: <PublicOutlined />,
-    link: "department"
-  },
-  {
-    text: "Records",
-    icon: <PublicOutlined />,
-    link: "record"
-  },
-  {
-    text: "Documents",
-    icon: <PublicOutlined />,
-    link: "documents"
-  },
-  {
-    text: "Fleets",
-    icon: null,
-    link: "#"
-  },
-  {
-    text: "Fleet Records",
-    icon: <PointOfSaleOutlined />,
-    link: "vehicle_records"
-  },
-  {
-    text: "Sales",
-    icon: null,
-    link: "#"
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-    link: "overview"
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-    link: "daily"
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-    link: "monthly"
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-    link: "breakdown"
-  },
-  {
-    text: "Management",
-    icon: null,
-    link: "#"
-  },
-  {
-    text: "Admin",
-    icon: <AdminPanelSettingsOutlined />,
-    link: "admin"
-  },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
-    link: "performance"
-  },
-];
 
 const Sidebar = ({
   drawerWidth,
@@ -149,14 +38,150 @@ const Sidebar = ({
   isNonMobile,
 }) => {
   const { pathname } = useLocation();
+  // eslint-disable-next-line no-unused-vars
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const theme = useTheme();
-  const { email, role } = useAuth();
+  const { email, role, isManager, isAdmin } = useAuth();
 
   useEffect(() => {
     setActive(pathname.substring(1));
   }, [pathname]);
+
+  const navItems = [
+    {
+      id: 1,
+      text: "Dashboard",
+      icon: <HomeOutlined />,
+      link: "",
+    },
+    {
+      id: 2,
+      text: "Employee",
+      icon: null,
+      link: "#",
+    },
+    {
+      id: 3,
+      text: "My Profile",
+      icon: <ShoppingCartOutlined />,
+      link: "profile",
+    },
+    {
+      id: 4,
+      text: isManager || isAdmin ? "Employee Lists" : null,
+      icon: isManager || isAdmin ? <Groups2Outlined /> : null,
+      link: "employee",
+    },
+    {
+      id: 5,
+      text: "Exit",
+      icon: <ReceiptLongOutlined />,
+      link: "exit",
+    },
+    {
+      id: 6,
+      text: "Leave Tracker",
+      icon: <ReceiptLongOutlined />,
+      link: "leave",
+    },
+    {
+      id: 7,
+      text: "Paystubs",
+      icon: <ReceiptLongOutlined />,
+      link: "paystubs",
+    },
+    {
+      id: 8,
+      text: "Trainings",
+      icon: <PublicOutlined />,
+      link: "trainings",
+    },
+    {
+      id: 9,
+      text: "Queries",
+      icon: <PublicOutlined />,
+      link: "query",
+    },
+    {
+      id: 10,
+      text: "Announcements",
+      icon: <PublicOutlined />,
+      link: "announcement",
+    },
+    {
+      id: 11,
+      text: "Department",
+      icon: null,
+      link: "#",
+    },
+    {
+      id: 12,
+      text: isManager || isAdmin ? "Department Records" : null,
+      icon: isManager || isAdmin ? <PublicOutlined /> : null,
+      link: "department-records",
+    },
+    {
+      id: 13,
+      text: isManager || isAdmin ? "Assign Employee" : null,
+      icon: isManager || isAdmin ? <PublicOutlined /> : null,
+      link: "assign-employee",
+    },
+    {
+      id: 14,
+      text: isManager || isAdmin ? "Deparments Document" : null,
+      icon: isManager || isAdmin ? <PublicOutlined /> : null,
+      link: "dept-document",
+    },
+    {
+      id: 15,
+      text: "Vehicle",
+      icon: null,
+      link: "#",
+    },
+    {
+      id: 16,
+      text: isManager || isAdmin ? "Add New Vehicle" : null,
+      icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
+      link: "add-new-vehicle",
+    },
+    {
+      id: 17,
+      text: isManager || isAdmin ? "Vehicle Records" : null,
+      icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
+      link: "vehicle-records",
+    },
+    {
+      id: 18,
+      text: isManager || isAdmin ? "Maintenance Records" : null,
+      icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
+      link: "maintenance-records",
+    },
+    {
+      id: 19,
+      text: isManager || isAdmin ? "Add New Vehicle User" : null,
+      icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
+      link: "add-vehicle-user",
+    },
+    {
+      id: 20,
+      text: isManager ? "User" : null,
+      icon: null,
+      link: "#",
+    },
+    {
+      id: 21,
+      text: isManager ? "Users" : null,
+      icon: isManager ? <PointOfSaleOutlined /> : null,
+      link: "/users",
+    },
+    {
+      id: 22,
+      text: isManager ? "Add New User" : null,
+      icon: isManager ? <TodayOutlined /> : null,
+      link: "add-user",
+    }
+  ];
 
   return (
     <Box component="nav">
@@ -169,19 +194,18 @@ const Sidebar = ({
           sx={{
             width: drawerWidth,
             "& .MuiDrawer-paper": {
-              color: theme.palette.secondary[200],
+              color: theme.palette.grey[1000],
               backgroundColor: theme.palette.background.alt,
               boxSixing: "border-box",
               borderWidth: isNonMobile ? 0 : "2px",
               width: drawerWidth,
             },
-          }}
-        >
+          }}>
           <Box width="100%">
-            <Box m="1.5rem 2rem 2rem 3rem">
-              <FlexBetween color={theme.palette.secondary.main}>
+            <Box m="1.5rem 2rem 2rem 2rem">
+              <FlexBetween color={theme.palette.primary.dark}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
-                  <Typography variant="h4" fontWeight="bold">
+                  <Typography variant="h3" fontWeight="bold">
                     Winelight
                   </Typography>
                 </Box>
@@ -192,48 +216,54 @@ const Sidebar = ({
                 )}
               </FlexBetween>
             </Box>
+            <Divider />
             <List>
-              {navItems.map(({ text, icon, link }) => {
-                if (!icon) {
+              {navItems.map((navItem) => {
+                const marginCondition = isManager || isAdmin ? "2.25rem 0 1rem 2rem" : "0"; // set margin roles
+
+                if (!navItem.icon) {
                   return (
-                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
-                      {text}
+                    <Typography
+                      fontWeight="bold"
+                      key={navItem.id}
+                      sx={{ m: `${marginCondition}` }}>
+                      {isManager || isAdmin ? navItem.text : null}
                     </Typography>
                   );
                 }
-                const lcText = text.toLowerCase();
+
+                if (!isManager && navItem.text == "Dashboard") {
+                  navItem.text = "Home";
+                }
 
                 return (
-                  <ListItem key={text} disablePadding>
+                  <ListItem key={navItem.id} disablePadding>
                     <ListItemButton
                       onClick={() => {
-                        navigate(`/dashboard/${link}`);
-                        setActive(lcText);
+                        navigate(`/dashboard/${navItem.link}`);
                       }}
                       sx={{
                         backgroundColor:
-                          active === lcText
-                            ? theme.palette.secondary[300]
+                          pathname === `/dashboard/${navItem.link}`
+                            ? theme.palette.grey[500]
                             : "transparent",
                         color:
-                          active === lcText
+                          pathname === `/dashboard/${navItem.link}`
                             ? theme.palette.primary[600]
                             : theme.palette.secondary[100],
-                      }}
-                    >
+                      }}>
                       <ListItemIcon
                         sx={{
-                          ml: "2rem",
+                          ml: "1rem",
                           color:
-                            active === lcText
-                              ? theme.palette.primary[600]
-                              : theme.palette.secondary[200],
-                        }}
-                      >
-                        {icon}
+                            pathname === `/dashboard/${navItem.link}`
+                              ? "green"
+                              : theme.palette.primary[200],
+                        }}>
+                        {navItem.icon}
                       </ListItemIcon>
-                      <ListItemText primary={text} />
-                      {active === lcText && (
+                      <ListItemText primary={navItem.text} />
+                      {pathname === `/dashboard/${navItem.link}` && (
                         <ChevronRightOutlined sx={{ ml: "auto" }} />
                       )}
                     </ListItemButton>
@@ -245,7 +275,7 @@ const Sidebar = ({
 
           <Box position="relative" bottom="0.5rem">
             <Divider />
-            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
+            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 1rem">
               <Box
                 component="img"
                 alt="profile"
@@ -259,20 +289,18 @@ const Sidebar = ({
                 <Typography
                   fontWeight="bold"
                   fontSize="0.9rem"
-                  sx={{ color: theme.palette.secondary[100] }}
-                >
-                  { email }
+                  sx={{ color: theme.palette.primary[100] }}>
+                  {email}
                 </Typography>
                 <Typography
                   fontSize="0.8rem"
-                  sx={{ color: theme.palette.secondary[200] }}
-                >
-                  { role }
+                  sx={{ color: theme.palette.primary[200] }}>
+                  {role}
                 </Typography>
               </Box>
               <SettingsOutlined
                 sx={{
-                  color: theme.palette.secondary[300],
+                  color: theme.palette.primary[300],
                   fontSize: "25px ",
                 }}
               />

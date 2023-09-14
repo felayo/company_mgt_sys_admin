@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import { Box, useMediaQuery } from "@mui/material";
 // import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
@@ -18,7 +19,7 @@ const DashLayout = () => {
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
       <Sidebar
         isNonMobile={isNonMobile}
-        drawerWidth="250px"
+        drawerWidth="300px"
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />

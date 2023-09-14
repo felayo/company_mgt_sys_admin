@@ -1,9 +1,10 @@
 import { useMemo } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { useSelector } from "react-redux";
 import { themeSettings } from "./theme";
-import { Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import DashLayout from "./components/DashLayout";
@@ -16,7 +17,6 @@ import PersistLogin from "./pages/auth/login/PersistLogin";
 import Dashboard from "./pages/dashboard/Dashboard";
 import EmployeeProfile from "./pages/employee/employeeProfile";
 import FleetRecords from "./pages/fleets/FleetRecords";
-
 import UsersList from "./pages/users/UsersList";
 import EditUser from "./pages/users/EditUser";
 
@@ -34,20 +34,19 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             {/* Protected Routes */}
             <Route element={<PersistLogin />}>
-              {/* Admin Routes */}
               
-                <Route path="/dashboard" element={<DashLayout />}>
-                  <Route index="dashboard" element={<Dashboard />} />
-                  <Route path="employee" element={<EmployeeProfile />} />
-                  <Route path="vehicle_records" element={<FleetRecords />} />
+              <Route path="/dashboard" element={<DashLayout />}>
+                <Route index="dashboard" element={<Dashboard />} />
+                <Route path="employee" element={<EmployeeProfile />} />
+                <Route path="vehicle-records" element={<FleetRecords />} />
 
-                  <Route path="users">
-                    <Route index element={<UsersList />} />
-                    <Route path=":id" element={<EditUser />} />
-                  </Route>
+                <Route path="users">
+                  <Route index element={<UsersList />} />
+                  <Route path=":id" element={<EditUser />} />
                 </Route>
-              
-            </Route>{" "}
+
+              </Route>
+            </Route>
             {/* End Protected Routes */}
           </Route>
         </Routes>
