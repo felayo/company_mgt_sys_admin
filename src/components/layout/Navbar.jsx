@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   AppBar,
   Button,
@@ -24,25 +24,28 @@ import {
 } from "@mui/icons-material";
 
 import { useDispatch } from "react-redux";
-import { setMode } from "../redux/features/theme/themeSlice";
-import { useSendLogoutMutation } from "../redux/features/auth/authApiSlice";
+import { setMode } from "../../redux/features/theme/themeSlice";
+import { useSendLogoutMutation } from "../../redux/features/auth/authApiSlice";
 
-import FlexBetween from "./FlexBetween";
-import profileImage from "../assets/user.png";
+import { FlexBetween } from "../styledComponents/styledComponents";
+import profileImage from "../../assets/user.png";
 
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const [sendLogout, { isLoading, isSuccess, isError, error }] = useSendLogoutMutation()
+  const [
+    sendLogout,
+    { isLoading, isSuccess, isError, error },
+  ] = useSendLogoutMutation();
   const { email, role } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-        if (isSuccess) navigate('/')
-    }, [isSuccess, navigate])
+    if (isSuccess) navigate("/");
+  }, [isSuccess, navigate]);
 
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
@@ -52,7 +55,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     <AppBar
       sx={{
         position: "static",
-        background: "none",
+        background: theme.palette.background.alt,
         boxShadow: "none",
       }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>

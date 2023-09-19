@@ -1,10 +1,10 @@
 import { Box, Button, useTheme, useMediaQuery } from "@mui/material";
 import { DownloadOutlined } from "@mui/icons-material";
 
-import Header from "../../components/Header";
+import Header from "../../components/layout/Header";
 import { useGetVehiclesQuery } from "../../redux/features/vehicle/vehiclesApiSlice";
 import FleetRecordLists from "./FleetRecordLists";
-import FlexBetween from "../../components/FlexBetween";
+import { FlexBetween } from "../../components/styledComponents/styledComponents";
 
 const FleetRecords = () => {
   const { data, isLoading } = useGetVehiclesQuery();

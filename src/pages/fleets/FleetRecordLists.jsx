@@ -7,8 +7,7 @@ import {
   CardContent,
   Collapse,
   Button,
-  Typography,
-  Rating,
+  Typography
 } from "@mui/material";
 
 const FleetRecordLists = ({

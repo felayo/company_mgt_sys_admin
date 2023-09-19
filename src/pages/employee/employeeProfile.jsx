@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-import Header from "../../components/Header";
+import Header from "../../components/layout/Header";
 import { useGetAllEmployeesQuery } from "../../redux/features/admin/usersApiSlice";
 
 const EmployeeProfile = () => {
@@ -29,9 +29,6 @@ const EmployeeProfile = () => {
       field: "phone",
       headerName: "Phone No",
       flex: 0.7,
-      renderCell: (params) => {
-        return params.value.replace(/^(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
-      },
     },
     {
       field: "address",

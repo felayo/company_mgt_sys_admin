@@ -23,13 +23,13 @@ import {
   ReceiptLongOutlined,
   PublicOutlined,
   PointOfSaleOutlined,
-  TodayOutlined
+  TodayOutlined,
 } from "@mui/icons-material";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import FlexBetween from "./FlexBetween";
-import profileImage from "../assets/user.png";
-import useAuth from "../hooks/useAuth";
+import { FlexBetween } from "../styledComponents/styledComponents";
+import profileImage from "../../assets/user.png";
+import useAuth from "../../hooks/useAuth";
 
 const Sidebar = ({
   drawerWidth,
@@ -65,49 +65,49 @@ const Sidebar = ({
       id: 3,
       text: "My Profile",
       icon: <ShoppingCartOutlined />,
-      link: "profile",
+      link: "/profile",
     },
     {
       id: 4,
-      text: isManager || isAdmin ? "Employee Lists" : null,
+      text: isManager || isAdmin ? "Winelight Employees" : null,
       icon: isManager || isAdmin ? <Groups2Outlined /> : null,
-      link: "employee",
+      link: "/employee",
     },
     {
       id: 5,
       text: "Exit",
       icon: <ReceiptLongOutlined />,
-      link: "exit",
+      link: "/exit",
     },
     {
       id: 6,
       text: "Leave Tracker",
       icon: <ReceiptLongOutlined />,
-      link: "leave",
+      link: "/leave",
     },
     {
       id: 7,
       text: "Paystubs",
       icon: <ReceiptLongOutlined />,
-      link: "paystubs",
+      link: "/paystubs",
     },
     {
       id: 8,
       text: "Trainings",
       icon: <PublicOutlined />,
-      link: "trainings",
+      link: "/trainings",
     },
     {
       id: 9,
       text: "Queries",
       icon: <PublicOutlined />,
-      link: "query",
+      link: "/query",
     },
     {
       id: 10,
       text: "Announcements",
       icon: <PublicOutlined />,
-      link: "announcement",
+      link: "/announcement",
     },
     {
       id: 11,
@@ -119,19 +119,19 @@ const Sidebar = ({
       id: 12,
       text: isManager || isAdmin ? "Department Records" : null,
       icon: isManager || isAdmin ? <PublicOutlined /> : null,
-      link: "department-records",
+      link: "/department-records",
     },
     {
       id: 13,
       text: isManager || isAdmin ? "Assign Employee" : null,
       icon: isManager || isAdmin ? <PublicOutlined /> : null,
-      link: "assign-employee",
+      link: "/assign-employee",
     },
     {
       id: 14,
       text: isManager || isAdmin ? "Deparments Document" : null,
       icon: isManager || isAdmin ? <PublicOutlined /> : null,
-      link: "dept-document",
+      link: "/dept-document",
     },
     {
       id: 15,
@@ -143,25 +143,25 @@ const Sidebar = ({
       id: 16,
       text: isManager || isAdmin ? "Add New Vehicle" : null,
       icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
-      link: "add-new-vehicle",
+      link: "/add-new-vehicle",
     },
     {
       id: 17,
       text: isManager || isAdmin ? "Vehicle Records" : null,
       icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
-      link: "vehicle-records",
+      link: "/vehicle-records",
     },
     {
       id: 18,
       text: isManager || isAdmin ? "Maintenance Records" : null,
       icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
-      link: "maintenance-records",
+      link: "/maintenance-records",
     },
     {
       id: 19,
       text: isManager || isAdmin ? "Add New Vehicle User" : null,
       icon: isManager || isAdmin ? <PointOfSaleOutlined /> : null,
-      link: "add-vehicle-user",
+      link: "/add-vehicle-user",
     },
     {
       id: 20,
@@ -179,8 +179,8 @@ const Sidebar = ({
       id: 22,
       text: isManager ? "Add New User" : null,
       icon: isManager ? <TodayOutlined /> : null,
-      link: "add-user",
-    }
+      link: "/add-user",
+    },
   ];
 
   return (
@@ -203,7 +203,7 @@ const Sidebar = ({
           }}>
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 2rem">
-              <FlexBetween color={theme.palette.primary.dark}>
+              <FlexBetween color={theme.palette.success.dark}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h3" fontWeight="bold">
                     Winelight
@@ -219,7 +219,8 @@ const Sidebar = ({
             <Divider />
             <List>
               {navItems.map((navItem) => {
-                const marginCondition = isManager || isAdmin ? "2.25rem 0 1rem 2rem" : "0"; // set margin roles
+                const marginCondition =
+                  isManager || isAdmin ? "2.25rem 0 1rem 2rem" : "0"; // set margin according to roles
 
                 if (!navItem.icon) {
                   return (
@@ -240,30 +241,30 @@ const Sidebar = ({
                   <ListItem key={navItem.id} disablePadding>
                     <ListItemButton
                       onClick={() => {
-                        navigate(`/dashboard/${navItem.link}`);
+                        navigate(`/dashboard${navItem.link}`);
                       }}
                       sx={{
                         backgroundColor:
-                          pathname === `/dashboard/${navItem.link}`
-                            ? theme.palette.grey[500]
+                          pathname === `/dashboard${navItem.link}`
+                            ? theme.palette.secondary.main
                             : "transparent",
                         color:
-                          pathname === `/dashboard/${navItem.link}`
-                            ? theme.palette.primary[600]
-                            : theme.palette.secondary[100],
+                          pathname === `/dashboard${navItem.link}`
+                            ? theme.palette.background.alt
+                            : theme.palette.primary[100],
                       }}>
                       <ListItemIcon
                         sx={{
                           ml: "1rem",
                           color:
-                            pathname === `/dashboard/${navItem.link}`
+                            pathname === `/dashboard${navItem.link}`
                               ? "green"
                               : theme.palette.primary[200],
                         }}>
                         {navItem.icon}
                       </ListItemIcon>
                       <ListItemText primary={navItem.text} />
-                      {pathname === `/dashboard/${navItem.link}` && (
+                      {pathname === `/dashboard${navItem.link}` && (
                         <ChevronRightOutlined sx={{ ml: "auto" }} />
                       )}
                     </ListItemButton>

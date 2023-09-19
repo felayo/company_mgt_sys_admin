@@ -1,8 +1,8 @@
 export const colorTokens = {
   grey: {
-    0: "#FFFFFF",
-    10: "#F6F6F6",
-    50: "#F0F0F0",
+    0:   "#FFFFFF",
+    10:  "#F6F6F6",
+    50:  "#F0F0F0",
     100: "#E0E0E0",
     200: "#C2C2C2",
     300: "#A3A3A3",
@@ -15,7 +15,7 @@ export const colorTokens = {
     1000: "#000000",
   },
   primary: {
-    50: "#E6FBFF",
+    50:  "#E6FBFF",
     100: "#CCF7FE",
     200: "#99EEFD",
     300: "#66E6FC",
@@ -26,8 +26,29 @@ export const colorTokens = {
     800: "#00353F",
     900: "#001519",
   },
+  greenAccent: {
+    100: "#dbf5ee",
+    200: "#b7ebde",
+    300: "#94e2cd",
+    400: "#70d8bd",
+    500: "#4cceac",
+    600: "#3da58a",
+    700: "#2e7c67",
+    800: "#1e5245",
+    900: "#0f2922",
+  },
+  redAccent: {
+    100: "#f8dcdb",
+    200: "#f1b9b7",
+    300: "#e99592",
+    400: "#e2726e",
+    500: "#db4f4a",
+    600: "#af3f3b",
+    700: "#832f2c",
+    800: "#58201e",
+    900: "#2c100f",
+  },
 };
-
 
 // mui theme settings
 export const themeSettings = (mode) => {
@@ -41,12 +62,22 @@ export const themeSettings = (mode) => {
               main: colorTokens.primary[500],
               light: colorTokens.primary[800],
             },
+            secondary: {
+              dark: colorTokens.greenAccent[200],
+              main: colorTokens.greenAccent[500],
+              light: colorTokens.greenAccent[800],
+            },
             neutral: {
               dark: colorTokens.grey[100],
               main: colorTokens.grey[200],
               mediumMain: colorTokens.grey[300],
               medium: colorTokens.grey[400],
               light: colorTokens.grey[700],
+            },
+            danger: {
+              dark: colorTokens.redAccent[200],
+              main: colorTokens.redAccent[500],
+              light: colorTokens.redAccent[800],
             },
             background: {
               default: colorTokens.grey[900],
@@ -55,11 +86,15 @@ export const themeSettings = (mode) => {
           }
         : {
             // palette values for light mode
-             // palette values for light mode
             primary: {
               dark: colorTokens.primary[700],
               main: colorTokens.primary[500],
               light: colorTokens.primary[50],
+            },
+            secondary: {
+              dark: colorTokens.greenAccent[800],
+              main: colorTokens.greenAccent[500],
+              light: colorTokens.greenAccent[100],
             },
             neutral: {
               dark: colorTokens.grey[700],
@@ -67,6 +102,11 @@ export const themeSettings = (mode) => {
               mediumMain: colorTokens.grey[400],
               medium: colorTokens.grey[300],
               light: colorTokens.grey[50],
+            },
+            danger: {
+              dark: colorTokens.redAccent[800],
+              main: colorTokens.redAccent[500],
+              light: colorTokens.redAccent[100],
             },
             background: {
               default: colorTokens.grey[10],
@@ -104,4 +144,3 @@ export const themeSettings = (mode) => {
     },
   };
 };
-

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Typography, Box, useTheme } from "@mui/material";
 
 const Header = ({ title, subtitle }) => {
@@ -6,13 +7,13 @@ const Header = ({ title, subtitle }) => {
     <Box>
       <Typography
         variant="h2"
-        color={theme.palette.secondary[100]}
+        color={theme.palette.primary[100]}
         fontWeight="bold"
         sx={{ mb: "5px" }}
       >
         {title}
       </Typography>
-      <Typography variant="h5" color={theme.palette.secondary[300]}>
+      <Typography variant="h5" color={theme.palette.success.dark}>
         {subtitle}
       </Typography>
     </Box>

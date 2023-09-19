@@ -10,6 +10,7 @@ import "./Login.css";
 import logo from "../../../assets/logo.png";
 
 import usePersist from "../../../hooks/usePersist";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
   const userRef = useRef();
@@ -18,6 +19,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [persist, setPersist] = usePersist();
+  const { isManager } = useAuth();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
