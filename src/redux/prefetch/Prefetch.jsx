@@ -9,7 +9,7 @@ const Prefetch = () => {
     useEffect(() => {
         console.log('subscribing')
         const employee = store.dispatch(employeeApiSlice.endpoints.getEmployee.initiate())
-        const employees = store.dispatch(usersApiSlice.endpoints.getAllEmployees.initiate())
+        const employees = store.dispatch(usersApiSlice.endpoints.getEmployees.initiate())
         const vehicles = store.dispatch(vehiclesApiSlice.endpoints.getVehicles.initiate())
 
         return () => {

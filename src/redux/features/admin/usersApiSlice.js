@@ -6,11 +6,8 @@ export const usersApiSlice = ApiSlice.injectEndpoints({
       query: (id) => `/user/${id}`,
       providesTags: ["User"],
     }),
-    getAllEmployees: build.query({
-      query: () => "/admin/staffs",
-      providesTags: ["AllEmployees"],
-    }),
+
   }),
 });
 
-export const { useGetUserQuery, useGetAllEmployeesQuery } = usersApiSlice;
+export const { useGetUserQuery } = usersApiSlice;

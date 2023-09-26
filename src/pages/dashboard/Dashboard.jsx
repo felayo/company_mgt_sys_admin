@@ -15,7 +15,7 @@ const Dashboard = () => {
   let employeeData = data?.data;
   const headerSubTitle = isLoading
     ? "Loading...."
-    : `Welcome, ${employeeData?.name}!`;
+    : `Welcome, ${employeeData?.firstName}!`;
 
   return (
     <Box m="1.5rem 2.5rem">

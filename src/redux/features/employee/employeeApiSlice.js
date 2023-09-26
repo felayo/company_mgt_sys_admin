@@ -6,7 +6,14 @@ export const employeeApiSlice = ApiSlice.injectEndpoints({
       query: () => "/staff/profile",
       providesTags: ["Employee"],
     }),
+    getEmployees: build.query({
+      query: () => "/admin/staffs",
+      providesTags: ["Employees"],
+    }),
   }),
 });
 
-export const { useGetEmployeeQuery } = employeeApiSlice;
+export const {
+  useGetEmployeeQuery,
+  useGetEmployeesQuery,
+} = employeeApiSlice;

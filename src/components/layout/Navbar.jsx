@@ -44,7 +44,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-    if (isSuccess) navigate("/");
+    if (isSuccess) navigate("/login");
   }, [isSuccess, navigate]);
 
   const isOpen = Boolean(anchorEl);
