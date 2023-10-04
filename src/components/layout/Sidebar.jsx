@@ -71,13 +71,13 @@ const Sidebar = ({
       id: 4,
       text: isManager || isAdmin ? "Winelight Employees" : null,
       icon: isManager || isAdmin ? <Groups2Outlined /> : null,
-      link: "/employee",
+      link: "/employees",
     },
     {
       id: 5,
-      text: "Exit",
+      text: "WIP",
       icon: <ReceiptLongOutlined />,
-      link: "/exit",
+      link: "#",
     },
     {
       id: 6,
@@ -108,6 +108,12 @@ const Sidebar = ({
       text: "Announcements",
       icon: <PublicOutlined />,
       link: "/announcement",
+    },
+    {
+      id: 5,
+      text: "Exit",
+      icon: <ReceiptLongOutlined />,
+      link: "#",
     },
     {
       id: 11,

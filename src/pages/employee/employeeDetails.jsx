@@ -1,14 +1,12 @@
-import { useGetEmployeeProfileQuery } from "../../redux/features/employee/employeeApiSlice";
+import { useParams } from "react-router-dom";
+import { useGetOneEmployeeQuery } from "../../redux/features/employee/employeeApiSlice";
 import Profile from "../../components/employees/Profile";
 
-const EmployeeProfile = () => {
-  const {
-    data,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetEmployeeProfileQuery();
+const EmployeeDetails = () => {
+  const { userId } = useParams();
+  const { data, isLoading, isSuccess, isError, error } = useGetOneEmployeeQuery(
+    userId
+  );
 
   const employee = data?.data;
 
@@ -29,8 +27,7 @@ const EmployeeProfile = () => {
   if (isSuccess) {
     content = <Profile data={employee} />;
   }
-
   return content;
 };
 
-export default EmployeeProfile;
+export default EmployeeDetails;

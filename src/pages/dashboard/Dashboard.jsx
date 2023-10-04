@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { NaturePeople } from "@mui/icons-material";
 
-import { useGetEmployeeQuery } from "../../redux/features/employee/employeeApiSlice";
+import { useGetEmployeeProfileQuery } from "../../redux/features/employee/employeeApiSlice";
 import { FlexBetween, GlobalButton } from "../../components/styledComponents/styledComponents";
 import HomeCardComponent from "../../components/homeCards/index";
 import Avatar from "../../assets/user.png";
@@ -9,7 +9,7 @@ import Avatar from "../../assets/user.png";
 
 const Dashboard = () => {
   // const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
-  const { data, isLoading } = useGetEmployeeQuery();
+  const { data, isLoading } = useGetEmployeeProfileQuery();
   // const { isManager } = useAuth()
 
   let employeeData = data?.data;

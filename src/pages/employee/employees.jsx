@@ -6,7 +6,7 @@ import {
   GlobalButton,
 } from "../../components/styledComponents/styledComponents";
 import { useGetEmployeesQuery } from "../../redux/features/employee/employeeApiSlice";
-import EmployeeList from "../../components/employees/index";
+import EmployeeList from "../../components/employees/EmployeeList";
 
 const Employees = () => {
   const {
@@ -18,7 +18,6 @@ const Employees = () => {
   } = useGetEmployeesQuery();
 
   const theme = useTheme();
-
   let content;
 
   if (isLoading) content = <p>Loading...</p>;

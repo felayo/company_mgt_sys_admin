@@ -15,11 +15,12 @@ import PersistLogin from "./pages/auth/login/PersistLogin";
 import RequireAuth from "./pages/auth/login/RequireAuth";
 import { ROLES } from "./config/roles";
 import Dashboard from "./pages/dashboard/Dashboard";
-import EmployeeProfile from "./pages/employee/employeeProfile";
 import FleetRecords from "./pages/fleets/FleetRecords";
 import UsersList from "./pages/users/UsersList";
 import EditUser from "./pages/users/EditUser";
 import Employees from "./pages/employee/employees";
+import EmployeeDetails from "./pages/employee/employeeDetails";
+import Profile from "./pages/employee/employeeProfile";
 import Prefetch from "./redux/prefetch/Prefetch";
 
 const App = () => {
@@ -43,16 +44,17 @@ const App = () => {
                 <Route element={<Prefetch />}>
                   <Route path="/dashboard" element={<DashLayout />}>
                     <Route index="dashboard" element={<Dashboard />} />
-                    <Route path="employee" element={<EmployeeProfile />} />
                     <Route path="vehicle-records" element={<FleetRecords />} />
+                    <Route path="profile" element={<Profile />} />
 
                     <Route path="users">
                       <Route index element={<UsersList />} />
                       <Route path=":id" element={<EditUser />} />
                     </Route>
                     <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
-                      <Route path="admin">
+                      <Route path="employees">
                         <Route index element={<Employees />} />
+                        <Route path=":userId" element={<EmployeeDetails />} />
                       </Route>
                     </Route>
                   </Route>

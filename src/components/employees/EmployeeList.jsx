@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, {useState} from 'react';
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -15,16 +15,21 @@ import {
   Tooltip,
 } from "@mui/material";
 import { AllInclusive } from "@mui/icons-material";
-import { Text, Text2 } from "../styledComponents/styledComponents"
+import { Text, Text2 } from "../styledComponents/styledComponents";
 import pic from "../../assets/user.png";
 
-
-const EmployeeList = ({ firstName, lastName, position, avatar, staffId, phone, user }) => {
+const EmployeeList = ({
+  firstName,
+  lastName,
+  position,
+  avatar,
+  staffId,
+  phone,
+  user,
+  _id,
+}) => {
   const image = avatar?.file;
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false)
 
   return (
     <Grid item xs={12} sm={12} md={6}>
@@ -40,9 +45,11 @@ const EmployeeList = ({ firstName, lastName, position, avatar, staffId, phone, u
           }
           action={
             <Tooltip title="click to view more" placement="top-start">
-              <IconButton aria-label="settings" onClick={handleOpen}>
-                <AllInclusive />
-              </IconButton>
+              <Link to={`/dashboard/employees/${_id}`}>
+                <IconButton aria-label="settings">
+                  <AllInclusive />
+                </IconButton>
+              </Link>
             </Tooltip>
           }
           title={position}
@@ -65,17 +72,16 @@ const EmployeeList = ({ firstName, lastName, position, avatar, staffId, phone, u
             <Typography>{phone}</Typography>
             <Typography>{user.email}</Typography>
           </Stack>
-          <Stack direction="row" justifyContent='space-between'>
+          <Stack direction="row" justifyContent="space-between">
             <Text>Hire Date</Text>
             <Text>Report to</Text>
           </Stack>
-          <Stack direction="row" justifyContent='space-between'>
+          <Stack direction="row" justifyContent="space-between">
             <Text2>6-5-2020</Text2>
             <Text2>Mr Tobi Oduyale</Text2>
           </Stack>
         </CardContent>
       </Card>
-      { open && <p>it is working modally</p>}
     </Grid>
   );
 };
