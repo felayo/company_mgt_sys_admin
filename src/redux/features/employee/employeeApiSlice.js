@@ -3,15 +3,15 @@ import { ApiSlice } from "../../app/api/apiSlice";
 export const employeeApiSlice = ApiSlice.injectEndpoints({
   endpoints: (build) => ({
     getEmployeeProfile: build.query({
-      query: () => "/staff/profile",
+      query: () => "/employee/profile",
       providesTags: ["EmployeeProfile"],
     }),
     getEmployees: build.query({
-      query: () => "/admin/staffs",
+      query: () => "/admin/employees",
       providesTags: ["Employees"],
     }),
     getOneEmployee: build.query({
-      query: (userId) => `/admin/staffs/${userId}`,
+      query: (userId) => `/admin/employees/${userId}`,
       providesTags: ["Employee"],
     }),
   }),

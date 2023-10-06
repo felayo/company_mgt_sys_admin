@@ -348,6 +348,7 @@ const Profile = ({ data }) => {
                 <TableCell>Degree/Diploma</TableCell>
                 <TableCell>Class</TableCell>
                 <TableCell>Graduation Date</TableCell>
+                <TableCell>Certificate</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -358,6 +359,7 @@ const Profile = ({ data }) => {
                 <TableCell>B.sc</TableCell>
                 <TableCell>Second class Upper</TableCell>
                 <TableCell>11/22/2000</TableCell>
+                <TableCell>cert file</TableCell>
                 <TableCell>button</TableCell>
               </TableRow>
             </TableBody>
@@ -391,6 +393,7 @@ const Profile = ({ data }) => {
                 <TableCell>Name of Certifcation</TableCell>
                 <TableCell>Status</TableCell>
                 <TableCell>Date Obtained</TableCell>
+                <TableCell>Certificate</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -400,6 +403,7 @@ const Profile = ({ data }) => {
                 <TableCell>Associate</TableCell>
                 <TableCell>Not expired</TableCell>
                 <TableCell>3/5/2022</TableCell>
+                <TableCell>cert</TableCell>
                 <TableCell>button</TableCell>
               </TableRow>
             </TableBody>
