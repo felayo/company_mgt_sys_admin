@@ -1,5 +1,5 @@
 import { useGetEmployeeProfileQuery } from "../../redux/features/employee/employeeApiSlice";
-import Profile from "../../components/employees/Profile";
+import Profile from "../../components/employees/employeeProfile";
 
 const EmployeeProfile = () => {
   const {
@@ -11,7 +11,7 @@ const EmployeeProfile = () => {
   } = useGetEmployeeProfileQuery();
 
   const employee = data?.data;
-
+  
   let content;
 
   if (isLoading) content = <p>Loading...</p>;

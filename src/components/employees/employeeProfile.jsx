@@ -10,22 +10,34 @@ import {
   Divider,
   Typography,
   useTheme,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  TableHead,
-  Paper,
 } from "@mui/material";
-import { Edit, LinkedIn, Facebook, Twitter, Add } from "@mui/icons-material";
-import {
-  GlobalButton,
-  FlexBetween,
-} from "../styledComponents/styledComponents";
+import { Edit, LinkedIn, Facebook, Twitter } from "@mui/icons-material";
+import RecordHeader from "./RecordHeader";
+import EducationRecord from "./EducationRecord";
+import CertificationRecord from "./ProfQualificationRecord";
+import EmploymentRecord from "./EmploymentRecord";
+import GuarantorRecord from "./GuarantorRecord";
+import NextOfKinRecord from "./NextOfKinRecord";
+import EmployeeFiles from "./EmployeeFiles";
 
 const Profile = ({ data }) => {
+  const {
+    profile,
+    schools,
+    certifications,
+    guarantor,
+    nextofKin,
+    employment,
+  } = data;
   const theme = useTheme();
+
+  const addEducation = () => console.log("clicked education");
+  const addProfQualification = () => console.log("clicked qualification");
+  const addExperience = () => console.log("clicked employment");
+  const addGuarantor = () => console.log("clicked guarantor");
+  const addNextOfKin = () => console.log("clicked nextOfkin");
+  const addFile = () => console.log("clicked files");
+
   return (
     <Box m="1.5rem 2.5rem">
       <Box>
@@ -37,18 +49,18 @@ const Profile = ({ data }) => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image={data?.avatar.file || ""}
+                    image={profile?.avatar.file || ""}
                     alt="profile picture"
                     sx={{ width: "35%", borderRadius: "15px" }}
                   />
                 </Box>
                 <Stack direction="column" alignItems="center" pb={2}>
-                  <Typography fontWeight="Bold">{data?.staffId}</Typography>
+                  <Typography fontWeight="Bold">{profile?.staffId}</Typography>
                   <Typography variant="h5" fontWeight="bold">
-                    {data.firstName} {data.lastName}
+                    {profile.firstName} {profile.lastName}
                   </Typography>
-                  <Typography>{data.phone}</Typography>
-                  <Typography>{data.user.email}</Typography>
+                  <Typography>{profile.phone}</Typography>
+                  <Typography>{profile.user.email}</Typography>
                 </Stack>
 
                 <Stack
@@ -114,7 +126,7 @@ const Profile = ({ data }) => {
                         <Box component="span" fontWeight="bold">
                           First Name:
                         </Box>{" "}
-                        {data.firstName}
+                        {profile.firstName}
                       </Typography>
                       <Typography>
                         {" "}
@@ -140,21 +152,21 @@ const Profile = ({ data }) => {
                         <Box component="span" fontWeight="bold" pr={2}>
                           Phone:
                         </Box>{" "}
-                        {data.phone}
+                        {profile.phone}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Home Address:
                         </Box>{" "}
-                        {data.address}
+                        {profile.address}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Country of Origin:
                         </Box>{" "}
-                        {data.country}
+                        {profile.country}
                       </Typography>
                       <Typography>
                         {" "}
@@ -167,49 +179,49 @@ const Profile = ({ data }) => {
                         <Box component="span" fontWeight="bold" pr={2}>
                           Position:
                         </Box>{" "}
-                        {data.position}
+                        {profile.position}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           PFA:
                         </Box>{" "}
-                        {data.pfa}
+                        {profile.pfa}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Bank Name:
                         </Box>{" "}
-                        {data.bank_name}
+                        {profile.bank_name}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Account Name:
                         </Box>{" "}
-                        {data.account_name}
+                        {profile.account_name}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Passport Number:
                         </Box>{" "}
-                        {data.passport}
+                        {profile.passport}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Genotype:
                         </Box>{" "}
-                        {data.genotype}
+                        {profile.genotype}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Blood Group
                         </Box>{" "}
-                        {data.blood_group}
+                        {profile.blood_group}
                       </Typography>
                     </Stack>
                   </Box>
@@ -222,49 +234,49 @@ const Profile = ({ data }) => {
                         <Box component="span" fontWeight="bold" pr={2}>
                           Last Name:
                         </Box>{" "}
-                        {data.lastName}
+                        {profile.lastName}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           EmployeeID:
                         </Box>{" "}
-                        {data.staffId}
+                        {profile.staffId}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Employee Status:
                         </Box>{" "}
-                        {data.user.active ? "Active" : "Inactive"}
+                        {profile.user.active ? "Active" : "Inactive"}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={1}>
                           Date Joined:
                         </Box>{" "}
-                        2020-06-07
+                        {new Date(profile.hiredDate).toDateString()}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={1}>
                           Email:
                         </Box>{" "}
-                        {data.user.email}
+                        {profile.user.email}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           City:
                         </Box>{" "}
-                        {data.city}
+                        {profile.city}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           State of Origin:
                         </Box>{" "}
-                        {data.state}
+                        {profile.state}
                       </Typography>
                       <Typography>
                         {" "}
@@ -277,42 +289,42 @@ const Profile = ({ data }) => {
                         <Box component="span" fontWeight="bold" pr={2}>
                           Rank:
                         </Box>{" "}
-                        {data.rank}
+                        {profile.rank}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           PEN (PFA) Number:
                         </Box>{" "}
-                        {data.pfa_number}
+                        {profile.pfa_number}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Bank Number:
                         </Box>{" "}
-                        {data.account_number}
+                        {profile.account_number}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Tax ID:
                         </Box>{" "}
-                        {data.tax_id}
+                        {profile.tax_id}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           NHF Number:
                         </Box>{" "}
-                        {data.nhf}
+                        {profile.nhf}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           NIN:
                         </Box>{" "}
-                        {data.nin}
+                        {profile.nin}
                       </Typography>
                     </Stack>
                   </Box>
@@ -327,44 +339,12 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <Box pb={2}>
-          <FlexBetween>
-            <Typography component="p" variant="h5" fontWeight="bold">
-              Educational Records
-            </Typography>
-            <GlobalButton variant="contained">
-              <Add sx={{ mr: "5px" }} />
-              Add Education
-            </GlobalButton>
-          </FlexBetween>
-        </Box>
-
-        <TableContainer component={Paper}>
-          <Table aria-aria-label="educational">
-            <TableHead>
-              <TableRow>
-                <TableCell>School</TableCell>
-                <TableCell>Course</TableCell>
-                <TableCell>Degree/Diploma</TableCell>
-                <TableCell>Class</TableCell>
-                <TableCell>Graduation Date</TableCell>
-                <TableCell>Certificate</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>OAU</TableCell>
-                <TableCell>Computer Science</TableCell>
-                <TableCell>B.sc</TableCell>
-                <TableCell>Second class Upper</TableCell>
-                <TableCell>11/22/2000</TableCell>
-                <TableCell>cert file</TableCell>
-                <TableCell>button</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <RecordHeader
+          title="Educational Records"
+          buttonTitle="Add Education"
+          buttonClick={addEducation}
+        />
+        <EducationRecord data={schools} />
       </Box>
 
       <Box
@@ -373,42 +353,12 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <Box pb={2}>
-          <FlexBetween>
-            <Typography component="p" variant="h5" fontWeight="bold">
-              Professional Qualifications
-            </Typography>
-            <GlobalButton variant="contained">
-              <Add sx={{ mr: "5px" }} />
-              Add Qualification
-            </GlobalButton>
-          </FlexBetween>
-        </Box>
-
-        <TableContainer component={Paper}>
-          <Table aria-aria-label="educational">
-            <TableHead>
-              <TableRow>
-                <TableCell>Certification Body</TableCell>
-                <TableCell>Name of Certifcation</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Date Obtained</TableCell>
-                <TableCell>Certificate</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>AWS</TableCell>
-                <TableCell>Associate</TableCell>
-                <TableCell>Not expired</TableCell>
-                <TableCell>3/5/2022</TableCell>
-                <TableCell>cert</TableCell>
-                <TableCell>button</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <RecordHeader
+          title="Professional Qualifications"
+          buttonTitle="Add Qualification"
+          buttonClick={addProfQualification}
+        />
+        <CertificationRecord data={certifications} />
       </Box>
 
       <Box
@@ -417,33 +367,12 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <Box pb={2}>
-          <FlexBetween>
-            <Typography component="p" variant="h5" fontWeight="bold">
-              Previous Employments
-            </Typography>
-            <GlobalButton variant="contained">
-              <Add sx={{ mr: "5px" }} />
-              Add Experience
-            </GlobalButton>
-          </FlexBetween>
-        </Box>
-
-        <TableContainer component={Paper}>
-          <Table aria-aria-label="educational">
-            <TableHead>
-              <TableRow>
-                <TableCell>Company Name</TableCell>
-                <TableCell>Job Title</TableCell>
-                <TableCell>From Date</TableCell>
-                <TableCell>To Date</TableCell>
-                <TableCell>Job Description</TableCell>
-                <TableCell>Reason for leaving</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-          </Table>
-        </TableContainer>
+        <RecordHeader
+          title="Previous Employments"
+          buttonTitle="Add Experience"
+          buttonClick={addExperience}
+        />
+        <EmploymentRecord data={employment} />
       </Box>
 
       <Box
@@ -452,35 +381,12 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <Box pb={2}>
-          <FlexBetween>
-            <Typography component="p" variant="h5" fontWeight="bold">
-              Guarantor
-            </Typography>
-            <GlobalButton variant="contained">
-              <Add sx={{ mr: "5px" }} />
-              Add Guarantor
-            </GlobalButton>
-          </FlexBetween>
-        </Box>
-
-        <TableContainer component={Paper}>
-          <Table aria-aria-label="educational">
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Occupation</TableCell>
-                <TableCell>Job Title</TableCell>
-                <TableCell>To Date</TableCell>
-                <TableCell>Place of Work</TableCell>
-                <TableCell>Address</TableCell>
-                <TableCell>Phone Number</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-          </Table>
-        </TableContainer>
+        <RecordHeader
+          title="Guarantor"
+          buttonTitle="Add Guarantor"
+          buttonClick={addGuarantor}
+        />
+        <GuarantorRecord data={guarantor} />
       </Box>
 
       <Box
@@ -489,32 +395,12 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <Box pb={2}>
-          <FlexBetween>
-            <Typography component="p" variant="h5" fontWeight="bold">
-              Next of Kin
-            </Typography>
-            <GlobalButton variant="contained">
-              <Add sx={{ mr: "5px" }} />
-              Add Next of Kin
-            </GlobalButton>
-          </FlexBetween>
-        </Box>
-
-        <TableContainer component={Paper}>
-          <Table aria-aria-label="educational">
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Address</TableCell>
-                <TableCell>Phone Number</TableCell>
-                <TableCell>Relationship</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-          </Table>
-        </TableContainer>
+        <RecordHeader
+          title="Next of Kin"
+          buttonTitle="Add Next of Kin"
+          buttonClick={addNextOfKin}
+        />
+        <NextOfKinRecord data={nextofKin} />
       </Box>
 
       <Box
@@ -523,34 +409,12 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <Box pb={2}>
-          <FlexBetween>
-            <Typography component="p" variant="h5" fontWeight="bold">
-              Files
-            </Typography>
-            <GlobalButton variant="contained">
-              <Add sx={{ mr: "5px" }} />
-              Add File
-            </GlobalButton>
-          </FlexBetween>
-        </Box>
-
-        <TableContainer component={Paper}>
-          <Table aria-aria-label="educational">
-            <TableHead>
-              <TableRow>
-                <TableCell>Document Type</TableCell>
-                <TableCell>Document</TableCell>
-                <TableCell>Added By</TableCell>
-                <TableCell>Added Time</TableCell>
-                <TableCell>Modified By</TableCell>
-                <TableCell>Modified Time</TableCell>
-                <TableCell>Preview</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-          </Table>
-        </TableContainer>
+        <RecordHeader
+          title="Files"
+          buttonTitle="Add File"
+          buttonClick={addFile}
+        />
+        <EmployeeFiles data={profile} />
       </Box>
     </Box>
   );

@@ -18,8 +18,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import FleetRecords from "./pages/fleets/FleetRecords";
 import UsersList from "./pages/users/UsersList";
 import EditUser from "./pages/users/EditUser";
-import Employees from "./pages/employee/employees";
-import EmployeeDetails from "./pages/employee/employeeDetails";
+import Employees from "./pages/employee/adminAllEmployees";
+import EmployeeDetails from "./pages/employee/adminEmployeeProfile";
 import Profile from "./pages/employee/employeeProfile";
 import Prefetch from "./redux/prefetch/Prefetch";
 

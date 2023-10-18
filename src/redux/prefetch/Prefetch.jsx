@@ -9,13 +9,13 @@ const Prefetch = () => {
     useEffect(() => {
         console.log('subscribing')
         const employee = store.dispatch(employeeApiSlice.endpoints.getEmployeeProfile.initiate())
-        const employees = store.dispatch(usersApiSlice.endpoints.getEmployees.initiate())
+        const adminEmployees = store.dispatch(usersApiSlice.endpoints.adminGetEmployees.initiate())
         const vehicles = store.dispatch(vehiclesApiSlice.endpoints.getVehicles.initiate())
 
         return () => {
             console.log('unsubscribing')
             employee.unsubscribe()
-            employees.unsubscribe()
+            adminEmployees.unsubscribe()
             vehicles.unsubscribe()
         }
     }, [])

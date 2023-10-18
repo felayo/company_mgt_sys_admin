@@ -1,15 +1,19 @@
 import { useParams } from "react-router-dom";
-import { useGetOneEmployeeQuery } from "../../redux/features/employee/employeeApiSlice";
-import Profile from "../../components/employees/Profile";
+import { useAdminGetOneEmployeeQuery } from "../../redux/features/employee/employeeApiSlice";
+import Profile from "../../components/employees/employeeProfile";
 
 const EmployeeDetails = () => {
   const { userId } = useParams();
-  const { data, isLoading, isSuccess, isError, error } = useGetOneEmployeeQuery(
-    userId
-  );
+  const {
+    data,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useAdminGetOneEmployeeQuery(userId);
 
   const employee = data?.data;
-
+  
   let content;
 
   if (isLoading) content = <p>Loading...</p>;

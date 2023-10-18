@@ -8,21 +8,21 @@ export const FlexBetween = styled(Box)({
 });
 
 export const Text = styled(Typography)({
-  backgroundColor: '#eee', 
-  padding: '3px 10px 0px 10px', 
-  borderRadius: '10px', 
-  fontSize: '14px',
-  margin: '10px auto',
-  marginTop: '20px'
-})
+  backgroundColor: "#eee",
+  padding: "3px 10px 0px 10px",
+  borderRadius: "10px",
+  fontSize: "14px",
+  margin: "10px auto",
+  marginTop: "20px",
+});
 
 export const Text2 = styled(Typography)({
-  fontWeight: 'bold',
-  fontSize: '15px',
-  margin: '0 auto',
-  marginLeft: '60px',
-  color: '#757575'
-})
+  fontWeight: "bold",
+  fontSize: "15px",
+  margin: "0 auto",
+  marginLeft: "60px",
+  color: "#757575",
+});
 
 export const GlobalButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.success.dark,
@@ -38,3 +38,4 @@ export const GlobalButton = styled(Button)(({ theme }) => ({
     boxShadow: "none",
   },
 }));
+

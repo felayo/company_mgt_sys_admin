@@ -26,7 +26,6 @@ const EmployeeList = ({
   staffId,
   phone,
   user,
-  _id,
 }) => {
   const image = avatar?.file;
   const theme = useTheme();
@@ -45,7 +44,7 @@ const EmployeeList = ({
           }
           action={
             <Tooltip title="click to view more" placement="top-start">
-              <Link to={`/dashboard/employees/${_id}`}>
+              <Link to={`/dashboard/employees/${user._id}`}>
                 <IconButton aria-label="settings">
                   <AllInclusive />
                 </IconButton>

@@ -6,19 +6,29 @@ export const employeeApiSlice = ApiSlice.injectEndpoints({
       query: () => "/employee/profile",
       providesTags: ["EmployeeProfile"],
     }),
-    getEmployees: build.query({
+    adminGetEmployees: build.query({
       query: () => "/admin/employees",
       providesTags: ["Employees"],
     }),
-    getOneEmployee: build.query({
+    adminGetOneEmployee: build.query({
       query: (userId) => `/admin/employees/${userId}`,
       providesTags: ["Employee"],
+    }),
+    adminAddNewEmployee: build.mutation({
+      query: (args) => ({
+        url: `/admin/employees/${args.id}`,
+        method: "POST",
+        body: {
+          ...args.initialProfile
+        },
+      }),
     }),
   }),
 });
 
 export const {
   useGetEmployeeProfileQuery,
-  useGetEmployeesQuery,
-  useGetOneEmployeeQuery
+  useAdminGetEmployeesQuery,
+  useAdminGetOneEmployeeQuery,
+  useAdminAddNewEmployeeMutation,
 } = employeeApiSlice;

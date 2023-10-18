@@ -12,7 +12,7 @@ const Dashboard = () => {
   const { data, isLoading } = useGetEmployeeProfileQuery();
   // const { isManager } = useAuth()
 
-  let employeeData = data?.data;
+  let employeeData = data?.data.profile;
   const headerSubTitle = isLoading
     ? "Loading...."
     : `Welcome, ${employeeData?.firstName}!`;
