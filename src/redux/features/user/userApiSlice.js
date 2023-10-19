@@ -16,9 +16,13 @@ export const usersApiSlice = ApiSlice.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ['Users']
+      invalidatesTags: ["Users"],
     }),
   }),
 });
 
-export const { useGetUserQuery, useGetAllUserQuery } = usersApiSlice;
+export const {
+  useGetUserQuery,
+  useGetAllUserQuery,
+  useAddUserMutation,
+} = usersApiSlice;

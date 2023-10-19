@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import styled from "@emotion/styled";
 import { Close } from "@mui/icons-material";
+import { useAddUserMutation } from "../../redux/features/user/userApiSlice";
 
 const Closebutton = styled(Close)({
   margin: "10px 0 0 10px",
@@ -39,6 +40,7 @@ const PasswordErrorMessage = () => {
 };
 
 const AddUser = ({ setOpen }) => {
+  const [errMsg, setErrMsg] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState({
@@ -46,6 +48,8 @@ const AddUser = ({ setOpen }) => {
     isTouched: false,
   });
   const [role, setRole] = useState("role");
+
+  const [addUser, { isLoading }] = useAddUserMutation();
 
   const getIsFormValid = () => {
     return (
@@ -67,9 +71,16 @@ const AddUser = ({ setOpen }) => {
     setOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  if (isLoading) return <p>Loading...</p>;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Account created!");
+    try {
+      const data = await addUser({ email, password: password.value, username, role }).unwrap();
+      console.log(data);
+    } catch (err) {
+      setErrMsg(err.data?.message);
+    }
     clearForm();
   };
 
