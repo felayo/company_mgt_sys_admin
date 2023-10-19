@@ -15,13 +15,12 @@ export const employeeApiSlice = ApiSlice.injectEndpoints({
       providesTags: ["Employee"],
     }),
     adminAddNewEmployee: build.mutation({
-      query: (args) => ({
-        url: `/admin/employees/${args.id}`,
+      query: (body) => ({
+        url: `/admin/employees/${body.id}`,
         method: "POST",
-        body: {
-          ...args.initialProfile
-        },
+        body
       }),
+      invalidatesTags: ['Employees']
     }),
   }),
 });

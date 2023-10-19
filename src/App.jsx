@@ -16,7 +16,7 @@ import RequireAuth from "./pages/auth/login/RequireAuth";
 import { ROLES } from "./config/roles";
 import Dashboard from "./pages/dashboard/Dashboard";
 import FleetRecords from "./pages/fleets/FleetRecords";
-import UsersList from "./pages/users/UsersList";
+import Users from "./pages/users/users";
 import EditUser from "./pages/users/EditUser";
 import Employees from "./pages/employee/adminAllEmployees";
 import EmployeeDetails from "./pages/employee/adminEmployeeProfile";
@@ -48,7 +48,7 @@ const App = () => {
                     <Route path="profile" element={<Profile />} />
 
                     <Route path="users">
-                      <Route index element={<UsersList />} />
+                      <Route index element={<Users />} />
                       <Route path=":id" element={<EditUser />} />
                     </Route>
                     <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
