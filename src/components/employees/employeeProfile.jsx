@@ -39,7 +39,7 @@ const Profile = ({ data }) => {
   const addFile = () => console.log("clicked files");
 
   return (
-    <Box m="1.5rem 2.5rem">
+    <>
       <Box>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4}>
@@ -416,7 +416,7 @@ const Profile = ({ data }) => {
         />
         <EmployeeFiles data={profile} />
       </Box>
-    </Box>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useAdminGetOneEmployeeQuery } from "../../redux/features/employee/employeeApiSlice";
 import Profile from "../../components/employees/employeeProfile";
+import { Box } from "@mui/material";
 
 const EmployeeDetails = () => {
   const { userId } = useParams();
@@ -13,7 +14,7 @@ const EmployeeDetails = () => {
   } = useAdminGetOneEmployeeQuery(userId);
 
   const employee = data?.data;
-  
+
   let content;
 
   if (isLoading) content = <p>Loading...</p>;
@@ -29,7 +30,11 @@ const EmployeeDetails = () => {
   }
 
   if (isSuccess) {
-    content = <Profile data={employee} />;
+    content = (
+      <Box m="1.5rem 2.5rem">
+        <Profile data={employee} />
+      </Box>
+    );
   }
   return content;
 };

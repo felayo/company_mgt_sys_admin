@@ -1,5 +1,6 @@
 import { useGetEmployeeProfileQuery } from "../../redux/features/employee/employeeApiSlice";
 import Profile from "../../components/employees/employeeProfile";
+import { Box } from "@mui/material";
 
 const EmployeeProfile = () => {
   const {
@@ -27,7 +28,11 @@ const EmployeeProfile = () => {
   }
 
   if (isSuccess) {
-    content = <Profile data={employee} />;
+    content = (
+      <Box m="1.5rem 2.5rem">
+        <Profile data={employee} />
+      </Box>
+    )
   }
 
   return content;
