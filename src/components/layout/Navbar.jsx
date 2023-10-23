@@ -35,19 +35,21 @@ import useAuth from "../../hooks/useAuth";
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const [
     sendLogout,
-    { isLoading, isSuccess, isError, error },
+    { isSuccess },
   ] = useSendLogoutMutation();
+
   const { email, role } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
-  const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
     if (isSuccess) navigate("/login");
   }, [isSuccess, navigate]);
 
+  const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
+  
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
@@ -55,10 +57,9 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     <AppBar
       sx={{
         position: "static",
-        background: theme.palette.background.alt,
-        boxShadow: "none",
+        background: theme.palette.background.default,
       }}>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar sx={{ justifyContent: "space-between" }} >
         {/* LEFT SIDE */}
         <FlexBetween>
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
@@ -127,6 +128,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             </Button>
             <Menu
               anchorEl={anchorEl}
+              disableScrollLock={true}
               open={isOpen}
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
