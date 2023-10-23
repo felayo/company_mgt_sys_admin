@@ -10,9 +10,6 @@ import { useAdminGetEmployeesQuery } from "../../redux/features/employee/employe
 import EmployeeList from "../../components/employees/adminEmployeeList";
 import AddEmployeeProfile from "../../components/employees/form/adminAddEmployeeProfile";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="right" ref={ref} {...props} />;
-});
 
 const Employees = () => {
   const [open, setOpen] = useState(false);
@@ -47,8 +44,7 @@ const Employees = () => {
               keepMounted
               open={open}
               maxWidth="md"
-              scroll="paper"
-              TransitionComponent={Transition}
+              scroll="body"
               aria-describedby="pop up to add new employee profile">
               <AddEmployeeProfile setOpen={setOpen} />
             </Dialog>
@@ -62,7 +58,7 @@ const Employees = () => {
             padding: "50px 30px 30px 45px",
             marginTop: "20px",
           }}>
-          <Grid container spacing={2}>
+          <Grid container>
             {employees?.data.map((employee) => (
               <EmployeeList key={employee._id} {...employee} />
             ))}
