@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Grid, useTheme, Dialog, Slide } from "@mui/material";
+import { useState } from "react";
+import { Box, Grid, useTheme, Dialog } from "@mui/material";
 import { PersonAdd } from "@mui/icons-material";
 import Header from "../../components/layout/Header";
 import {

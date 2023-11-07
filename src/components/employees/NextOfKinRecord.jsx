@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react'
 import {
   TableContainer,
   Table,
@@ -7,12 +8,36 @@ import {
   TableRow,
   TableCell,
   Paper,
+  Box,
+  Dialog,
+  Typography,
 } from "@mui/material";
-import { Edit } from "@mui/icons-material";
+import {
+  FlexBetween,
+  GlobalButton,
+} from "../styledComponents/styledComponents";
+import { Edit, Add } from "@mui/icons-material";
 
 const NextOfKinRecord = ({ data }) => {
+  const [open, setOpen] = useState(false);
   return (
     <>
+      <Box pb={2}>
+        <FlexBetween>
+          <Typography component="p" variant="h5" fontWeight="bold">
+            Next of Kin
+          </Typography>
+          <Box>
+            <GlobalButton variant="contained" onClick={() => setOpen(true)}>
+              <Add sx={{ mr: "5px" }} />
+              Add NextOfKin
+            </GlobalButton>
+            <Dialog keepMounted open={open} maxWidth="md" scroll="paper">
+              <Typography>I want to see you open file</Typography>
+            </Dialog>
+          </Box>
+        </FlexBetween>
+      </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="educational">
           <TableHead>

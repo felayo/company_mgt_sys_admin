@@ -12,7 +12,6 @@ import {
   useTheme,
 } from "@mui/material";
 import { Edit, LinkedIn, Facebook, Twitter } from "@mui/icons-material";
-import RecordHeader from "./RecordHeader";
 import EducationRecord from "./EducationRecord";
 import CertificationRecord from "./ProfQualificationRecord";
 import EmploymentRecord from "./EmploymentRecord";
@@ -20,7 +19,7 @@ import GuarantorRecord from "./GuarantorRecord";
 import NextOfKinRecord from "./NextOfKinRecord";
 import EmployeeFiles from "./EmployeeFiles";
 
-const Profile = ({ data }) => {
+const Profile = ({ data}) => {
   const {
     profile,
     schools,
@@ -30,13 +29,6 @@ const Profile = ({ data }) => {
     employment,
   } = data;
   const theme = useTheme();
-
-  const addEducation = () => console.log("clicked education");
-  const addProfQualification = () => console.log("clicked qualification");
-  const addExperience = () => console.log("clicked employment");
-  const addGuarantor = () => console.log("clicked guarantor");
-  const addNextOfKin = () => console.log("clicked nextOfkin");
-  const addFile = () => console.log("clicked files");
 
   return (
     <>
@@ -49,7 +41,7 @@ const Profile = ({ data }) => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image={profile?.avatar.file || ""}
+                    image={profile?.avatar?.file || ""}
                     alt="profile picture"
                     sx={{ width: "35%", borderRadius: "15px" }}
                   />
@@ -133,19 +125,21 @@ const Profile = ({ data }) => {
                         <Box component="span" fontWeight="bold">
                           Middle Name:
                         </Box>{" "}
+                        {profile.middleName}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Birthday:
                         </Box>{" "}
+                        {profile.birthday}
                       </Typography>
                       <Typography>
                         {" "}
                         <Box component="span" fontWeight="bold" pr={2}>
                           Marital Status:
                         </Box>{" "}
-                        Married
+                        {profile.maritalStatus}
                       </Typography>
                       <Typography>
                         {" "}
@@ -339,11 +333,6 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <RecordHeader
-          title="Educational Records"
-          buttonTitle="Add Education"
-          buttonClick={addEducation}
-        />
         <EducationRecord data={schools} />
       </Box>
 
@@ -353,11 +342,6 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <RecordHeader
-          title="Professional Qualifications"
-          buttonTitle="Add Qualification"
-          buttonClick={addProfQualification}
-        />
         <CertificationRecord data={certifications} />
       </Box>
 
@@ -367,11 +351,6 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <RecordHeader
-          title="Previous Employments"
-          buttonTitle="Add Experience"
-          buttonClick={addExperience}
-        />
         <EmploymentRecord data={employment} />
       </Box>
 
@@ -381,11 +360,6 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <RecordHeader
-          title="Guarantor"
-          buttonTitle="Add Guarantor"
-          buttonClick={addGuarantor}
-        />
         <GuarantorRecord data={guarantor} />
       </Box>
 
@@ -395,11 +369,6 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <RecordHeader
-          title="Next of Kin"
-          buttonTitle="Add Next of Kin"
-          buttonClick={addNextOfKin}
-        />
         <NextOfKinRecord data={nextofKin} />
       </Box>
 
@@ -409,11 +378,6 @@ const Profile = ({ data }) => {
           backgroundColor: theme.palette.background.alt,
           padding: "1.5rem",
         }}>
-        <RecordHeader
-          title="Files"
-          buttonTitle="Add File"
-          buttonClick={addFile}
-        />
         <EmployeeFiles data={profile} />
       </Box>
     </>

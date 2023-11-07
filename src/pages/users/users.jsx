@@ -70,7 +70,7 @@ const Users = () => {
           sx={{
             backgroundColor: theme.palette.background.alt,
             borderRadius: "15px",
-            width: "94%",
+            width: "100%",
             padding: "50px 30px 30px 45px",
             marginTop: "20px",
           }}>
@@ -82,6 +82,7 @@ const Users = () => {
                   <TableCell>Email</TableCell>
                   <TableCell>Role</TableCell>
                   <TableCell>Created Date</TableCell>
+                  <TableCell>Add Profile</TableCell>
                 </TableRow>
               </TableHead>
               {users?.data.map((user) => (

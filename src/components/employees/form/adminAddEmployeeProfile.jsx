@@ -3,7 +3,6 @@ import { useState } from "react";
 import { TextField, Grid, Button, DialogContent, Box } from "@mui/material";
 import styled from "@emotion/styled";
 import { Close, PhotoCamera } from "@mui/icons-material";
-// import { useAdminAddNewEmployeeMutation } from "../../../redux/features/employee/employeeApiSlice";
 
 const Closebutton = styled(Close)({
   margin: "10px 0 0 10px",
@@ -14,7 +13,6 @@ const Closebutton = styled(Close)({
 });
 
 const AddEmployeeProfile = ({ setOpen }) => {
-  // const [adminAddNewEmployee, { isLoading }] = useAdminAddNewEmployeeMutation();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

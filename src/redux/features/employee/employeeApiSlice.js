@@ -15,13 +15,27 @@ export const employeeApiSlice = ApiSlice.injectEndpoints({
       providesTags: ["Employee"],
     }),
     adminAddNewEmployee: build.mutation({
-      query: (body) => ({
-        url: `/admin/employees/${body.id}`,
-        method: "POST",
-        body
-      }),
+      query(data) {
+        const { id, ...body } = data
+        return {
+          url: `/admin/employees/${id}`,
+          method: 'POST',
+          body,
+        }
+      },
       invalidatesTags: ['Employees']
     }),
+    adminUploadDocument: build.mutation({
+      query(document) {
+        const { id, formData } = document
+        return {
+          url: `/admin/employees/${id}/upload`,
+          method: 'PATCH',
+          body: formData
+        }
+      },
+      invalidatesTags: ["Employee"]
+    })
   }),
 });
 
@@ -30,4 +44,5 @@ export const {
   useAdminGetEmployeesQuery,
   useAdminGetOneEmployeeQuery,
   useAdminAddNewEmployeeMutation,
+  useAdminUploadDocumentMutation,
 } = employeeApiSlice;
