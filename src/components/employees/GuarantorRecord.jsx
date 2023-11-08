@@ -20,7 +20,6 @@ import { Edit, Add } from "@mui/icons-material";
 
 const GuarantorRecord = ({ data }) => {
   const [open, setOpen] = useState(false);
-  console.log(data)
   return (
     <>
       <Box pb={2}>

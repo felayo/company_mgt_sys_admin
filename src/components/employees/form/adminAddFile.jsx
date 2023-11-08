@@ -29,16 +29,15 @@ const AddFile = ({ setOpen, userId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-
+    documents.forEach((document, index) => {
+      formData.append(`document${index}`, document);
+    });
     try {
-      documents.forEach((document, index) => {
-        console.log(document)
-        formData.append(`document${index}`, document);
-      });
       const data = await adminUploadDocument({
         id,
         formData,
       }).unwrap();
+      console.log(data);
     } catch (err) {
       setErrMsg(err.data?.message);
     }

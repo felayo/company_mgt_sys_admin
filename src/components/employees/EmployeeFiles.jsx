@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import { useState } from "react";
 import {
   TableContainer,
   Table,
@@ -11,16 +11,18 @@ import {
   Box,
   Dialog,
   Typography,
+  Link,
+  Tooltip
 } from "@mui/material";
 import {
   FlexBetween,
   GlobalButton,
 } from "../styledComponents/styledComponents";
 import { Download, Edit, Add } from "@mui/icons-material";
-import AddFile from './form/adminAddFile';
+import AddFile from "./form/adminAddFile";
 
 const EmployeeFiles = ({ data }) => {
-  const { user } = data
+  const { user, documents } = data;
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -44,31 +46,27 @@ const EmployeeFiles = ({ data }) => {
         <Table sx={{ minWidth: 650 }} aria-label="educational">
           <TableHead>
             <TableRow>
-              <TableCell>Document Type</TableCell>
               <TableCell>Document</TableCell>
-              <TableCell>Added By</TableCell>
-              <TableCell>Added Time</TableCell>
-              <TableCell>Modified By</TableCell>
-              <TableCell>Modified Time</TableCell>
               <TableCell>Preview</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>B.sc</TableCell>
-              <TableCell>document</TableCell>
-              <TableCell>Ayorinde</TableCell>
-              <TableCell>12.00</TableCell>
-              <TableCell>Ayorinde</TableCell>
-              <TableCell>23.00</TableCell>
-              <TableCell>
-                <Download />
-              </TableCell>
-              <TableCell>
-                <Edit />
-              </TableCell>
-            </TableRow>
+            {documents.map((doc) => (
+              <TableRow key={doc._id}>
+                <TableCell>{doc?.name}</TableCell>
+                <TableCell>
+                  <Tooltip title="click to download" placement="top-start">
+                    <Link target="_blank" rel="noreferrer" href={doc?.file}>
+                    <Download />
+                  </Link>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>
+                  <Edit />
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

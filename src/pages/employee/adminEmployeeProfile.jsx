@@ -32,7 +32,7 @@ const EmployeeDetails = () => {
   if (isSuccess) {
     content = (
       <Box m="1.5rem 2.5rem">
-        <Profile data={employee} userId={userId} />
+        <Profile data={employee} />
       </Box>
     );
   }
