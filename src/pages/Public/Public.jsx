@@ -1,8 +1,13 @@
-
+import PublicNavbar from "../../components/public/Navbar"
+import Hero from "../../components/public/Hero"
 
 const Public = () => {
   return (
-    <div>Public Welcome Page</div>
+    <div>
+      <PublicNavbar />
+      <Hero />
+      <p>Next section</p>
+    </div>
   )
 }
 

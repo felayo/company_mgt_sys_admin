@@ -7,6 +7,11 @@ export const FlexBetween = styled(Box)({
   alignItems: "center",
 });
 
+export const HeroSection = styled(Box)({
+  minHeight: "30em",
+  backgroundColor: "rgb(231, 242, 251)"
+});
+
 export const Text = styled(Typography)({
   backgroundColor: "#eee",
   padding: "3px 10px 0px 10px",
