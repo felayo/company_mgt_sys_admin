@@ -7,7 +7,7 @@ const Hero = () => {
     <HeroSection>
       <Container>
         <Grid container>
-          <Grid item xs={8}>
+          <Grid item xs={12} sm={8}>
             <Box pt={10} pl={15}>
               <Stack spacing={2} mb={5}>
                 <Typography
@@ -61,7 +61,7 @@ const Hero = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item sm={4} xs={12}>
             <Box pr={15} pt={10} alt="logo" src={MdImage} component="img" />
           </Grid>
         </Grid>
