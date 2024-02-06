@@ -11,5 +11,7 @@ export const store = configureStore({
     [ApiSlice.reducerPath]: ApiSlice.reducer,
   },
   middleware: (getDefault) => getDefault().concat(ApiSlice.middleware),
+  // eslint-disable-next-line no-undef
+  devTools: process.env.NODE_ENV !== 'production'
 });
 setupListeners(store.dispatch);

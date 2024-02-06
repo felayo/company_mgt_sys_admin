@@ -21,6 +21,7 @@ import AddEmployeeProfile from "./pages/users/addEmployeeProfile";
 import Employees from "./pages/employee/adminAllEmployees";
 import EmployeeDetails from "./pages/employee/adminEmployeeProfile";
 import Profile from "./pages/employee/employeeProfile";
+import Wip from "./pages/wip/WipList";
 import Prefetch from "./redux/prefetch/Prefetch";
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
                     <Route index="dashboard" element={<Dashboard />} />
                     <Route path="vehicle-records" element={<FleetRecords />} />
                     <Route path="profile" element={<Profile />} />
+                    <Route path="wips" element={<Wip />} />
 
                     <Route path="users">
                       <Route index element={<Users />} />

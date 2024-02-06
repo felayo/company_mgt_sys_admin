@@ -85,7 +85,7 @@ const Sidebar = ({
       id: 5,
       text: "WIP",
       icon: <GroupWork />,
-      link: "#",
+      link: "/wips",
     },
     {
       id: 6,

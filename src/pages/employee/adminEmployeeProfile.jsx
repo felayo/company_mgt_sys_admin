@@ -21,11 +21,7 @@ const EmployeeDetails = () => {
 
   if (isError) {
     content = (
-      <p className="errmsg">
-        {error?.data?.message == "jwt expired"
-          ? "refresh this page"
-          : error?.data?.message}
-      </p>
+      <p className="errmsg">{error?.data?.message}</p>
     );
   }
 

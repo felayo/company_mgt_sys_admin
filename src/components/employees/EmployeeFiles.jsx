@@ -12,13 +12,14 @@ import {
   Dialog,
   Typography,
   Link,
-  Tooltip
+  Tooltip,
+  IconButton,
 } from "@mui/material";
 import {
   FlexBetween,
   GlobalButton,
 } from "../styledComponents/styledComponents";
-import { Download, Edit, Add } from "@mui/icons-material";
+import { Download, DeleteForever, Add } from "@mui/icons-material";
 import AddFile from "./form/adminAddFile";
 
 const EmployeeFiles = ({ data }) => {
@@ -58,12 +59,16 @@ const EmployeeFiles = ({ data }) => {
                 <TableCell>
                   <Tooltip title="click to download" placement="top-start">
                     <Link target="_blank" rel="noreferrer" href={doc?.file}>
-                    <Download />
-                  </Link>
+                      <Download />
+                    </Link>
                   </Tooltip>
                 </TableCell>
                 <TableCell>
-                  <Edit />
+                  <Tooltip title="delete file" placement="top-start">
+                    <IconButton color="error">
+                      <DeleteForever sx={{ fontSize: "25px" }} />
+                    </IconButton>
+                  </Tooltip>
                 </TableCell>
               </TableRow>
             ))}

@@ -38,7 +38,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { token } = await login({ email, password }).unwrap();
-      dispatch(setCredentials({token}));
+      dispatch(setCredentials({ token }));
       setEmail("");
       setPassword("");
       navigate("/dashboard");
@@ -87,7 +87,7 @@ const Login = () => {
                   </label>
                   <input
                     type="email"
-                    name="email"
+                    id="email"
                     ref={userRef}
                     value={email}
                     className="login_input"
@@ -104,7 +104,7 @@ const Login = () => {
                   </label>
                   <input
                     type="password"
-                    name="password"
+                    id="password"
                     value={password}
                     className="login_input"
                     placeholder="Enter your password"

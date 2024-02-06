@@ -33,7 +33,11 @@ const Users = () => {
     isError,
     error,
     isLoading,
-  } = useGetAllUserQuery();
+  } = useGetAllUserQuery("all_users", { 
+    pollingInterval: 15000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   const theme = useTheme();
 

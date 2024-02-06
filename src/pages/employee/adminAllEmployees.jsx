@@ -10,7 +10,6 @@ import { useAdminGetEmployeesQuery } from "../../redux/features/employee/employe
 import EmployeeList from "../../components/employees/adminEmployeeList";
 import AddEmployeeProfile from "../../components/employees/form/adminAddEmployeeProfile";
 
-
 const Employees = () => {
   const [open, setOpen] = useState(false);
   const {
