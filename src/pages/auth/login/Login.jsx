@@ -1,13 +1,17 @@
 import { useEffect, useState, useRef } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../../../redux/features/auth/authApiSlice";
 import { setCredentials } from "../../../redux/features/auth/authSlice";
 import "./Login.css";
-//import { useFormik } from "formik";
-//import { LoginValidation } from "./Validator";
-import logo from "../../../assets/logo.png";
 
 import usePersist from "../../../hooks/usePersist";
 import useAuth from "../../../hooks/useAuth";
@@ -70,9 +74,43 @@ const Login = () => {
         <Grid item xs={12} md={6}>
           <Box className="login_rightside">
             <Box className="login_div">
-              <Link to="/">
-                <img src={logo} className="login_logo" alt="logo" />
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <Typography
+                  variant="h5"
+                  component="h1"
+                  pt={10}
+                  pb={3}
+                  color="#0ADB42"
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}>
+                  Go to WINELIGHT Website
+                </Typography>
               </Link>
+              <Box style={{ minWidth: "60%" }}>
+                <Typography
+                  variant="h4"
+                  component="p"
+                  fontWeight="bold"
+                  pb={6}
+                  sx={{
+                    position: "relative",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      bottom: 35,
+                      left: "6%",
+                      transform: "translateX(-50%)",
+                      width: "40px",
+                      height: "4px",
+                      backgroundColor: "#0ADB42",
+                    },
+                  }}>
+                  Welcome Back!
+                </Typography>
+              </Box>
               <Typography
                 ref={errRef}
                 className={errClass}
@@ -112,21 +150,19 @@ const Login = () => {
                     required
                   />
                 </div>
+                <div className="button_section">
+                  <FormGroup>
+                    <FormControlLabel
+                      control={<Checkbox defaultChecked  onChange={handleToggle}/>}
+                      label="Stay on this device"
+                      style={{ color: 'white', fontSize: '16px' }}
+                    />
+                  </FormGroup>
 
-                <button className="login_button" type="submit">
-                  Login
-                </button>
-
-                <label htmlFor="persist" className="form__persist">
-                  <input
-                    type="checkbox"
-                    className="form__checkbox"
-                    id="persist"
-                    onChange={handleToggle}
-                    checked={persist}
-                  />
-                  Stay on this device
-                </label>
+                  <button className="login_button" type="submit">
+                    Login
+                  </button>
+                </div>
               </form>
             </Box>
           </Box>
