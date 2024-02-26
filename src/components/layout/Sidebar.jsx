@@ -38,6 +38,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { FlexBetween } from "../styledComponents/styledComponents";
 import useAuth from "../../hooks/useAuth";
+import Logo from "../../assets/wine_logo.jpg"
 
 const Sidebar = ({
   drawerWidth,
@@ -218,10 +219,8 @@ const Sidebar = ({
           <Box width="100%">
             <Box m="1.1rem 2rem 1.1rem 2rem">
               <FlexBetween color={theme.palette.success.main}>
-                <Box display="flex" alignItems="center" gap="0.5rem">
-                  <Typography variant="h3" fontWeight="bold">
-                    WINELIGHT
-                  </Typography>
+                <Box display="flex" alignItems="center" gap="0.5rem" ml={3}>
+                  <Box component="img" src={Logo} alt="logo"/>
                 </Box>
                 {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>

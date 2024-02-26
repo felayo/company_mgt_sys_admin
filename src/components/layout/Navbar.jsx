@@ -13,7 +13,9 @@ import {
   Menu,
   MenuItem,
   useTheme,
+  Avatar,
 } from "@mui/material";
+import { styled } from '@mui/system';
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -22,21 +24,23 @@ import {
   SettingsOutlined,
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
+import { deepOrange } from "@mui/material/colors";
+import { FlexBetween } from "../styledComponents/styledComponents";
 
 import { useDispatch } from "react-redux";
 import { setMode } from "../../redux/features/theme/themeSlice";
 import { useSendLogoutMutation } from "../../redux/features/auth/authApiSlice";
-
-import { FlexBetween } from "../styledComponents/styledComponents";
-import profileImage from "../../assets/user.png";
-
+import { useGetEmployeeProfileQuery } from "../../redux/features/employee/employeeApiSlice";
 import useAuth from "../../hooks/useAuth";
 
+const CustomAppBar = styled(AppBar)({
+  boxShadow: 'none', 
+});
+
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const [
-    sendLogout,
-    { isSuccess },
-  ] = useSendLogoutMutation();
+  const [sendLogout, { isSuccess }] = useSendLogoutMutation();
+  const { data, isLoading } = useGetEmployeeProfileQuery();
+  let firstname = data?.data.profile.firstName;
 
   const { email, role } = useAuth();
   const navigate = useNavigate();
@@ -49,24 +53,24 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
-  
+
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
   return (
-    <AppBar
+    <CustomAppBar
       sx={{
         position: "static",
-        background: theme.palette.background.default,
+        background: theme.palette.background.alt,
       }}>
-      <Toolbar sx={{ justifyContent: "space-between" }} >
+      <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* LEFT SIDE */}
         <FlexBetween>
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon />
           </IconButton>
           <FlexBetween
-            backgroundColor={theme.palette.background.alt}
+            backgroundColor={theme.palette.background.default}
             borderRadius="9px"
             gap="3rem"
             p="0.1rem 1.5rem">
@@ -100,15 +104,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 textTransform: "none",
                 gap: "1rem",
               }}>
-              <Box
-                component="img"
-                alt="profile"
-                src={profileImage}
-                height="32px"
-                width="32px"
-                borderRadius="50%"
-                sx={{ objectFit: "cover" }}
-              />
+              <Avatar sx={{ bgcolor: deepOrange[500] }}>{!isLoading ? firstname.charAt(0) : null}</Avatar>
               <Box textAlign="left">
                 <Typography
                   fontWeight="bold"
@@ -137,7 +133,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           </FlexBetween>
         </FlexBetween>
       </Toolbar>
-    </AppBar>
+    </CustomAppBar>
   );
 };
 
